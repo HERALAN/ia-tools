@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursos Curso Arquitectos del Pensamiento</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #27ae60;
+            --bg-color: #ecf0f1;
+        }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: var(--bg-color);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px; 
+            max-width: 800px; 
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            min-height: 95vh;
+        }
+        .main-content { flex: 1; }
+        h1 { text-align: center; color: var(--primary-color); font-size: 1.8em; text-transform: uppercase; margin-bottom: 5px; }
+        .subtitle { text-align: center; color: var(--secondary-color); font-size: 1.1em; font-weight: normal; margin-top: 0; margin-bottom: 30px; border-bottom: 2px solid var(--primary-color); padding-bottom: 15px; }
+        .btn-container { display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 20px; }
+        .prompt-btn { background-color: var(--primary-color); color: white; border: none; padding: 15px; font-size: 16px; border-radius: 5px; cursor: pointer; transition: background 0.3s; text-align: left; font-weight: bold; }
+        .prompt-btn:hover { background-color: var(--secondary-color); }
+        .hidden { display: none; }
+        #area-trabajo { background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-top: 20px; }
+        #titulo-prompt { color: var(--primary-color); margin-top: 0; margin-bottom: 5px; }
+        #descripcion-prompt { color: #666; font-size: 0.95em; margin-bottom: 20px; font-style: italic; }
+        label { font-weight: bold; display: block; margin-top: 15px; color: var(--secondary-color); }
+        textarea, input[type="text"] { width: 100%; padding: 12px; margin-top: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; font-size: 16px; font-family: inherit; }
+        .option-group { margin: 15px 0; padding: 15px; border: 1px solid #eee; border-radius: 5px; background-color: #fcfcfc; }
+        .option-group p { margin: 0 0 10px 0; font-weight: bold; color: var(--secondary-color); border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        .radio-group { margin: 15px 0; padding: 10px; border: 1px solid #eee; border-radius: 5px; }
+        .grid-options { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .extra-input { margin-top: 8px; display: none; height: 40px; border-color: var(--accent-color); }
+        .copy-btn { background-color: var(--accent-color); color: white; border: none; padding: 15px; margin-top: 20px; width: 100%; font-size: 18px; font-weight: bold; border-radius: 5px; cursor: pointer; transition: background 0.3s; }
+        .copy-btn:hover { background-color: #219a52; }
+        #mensaje-exito { color: var(--accent-color); text-align: center; font-weight: bold; margin-top: 15px; display: none; }
+        footer { text-align: center; font-size: 0.85em; color: #7f8c8d; margin-top: 50px; padding-top: 20px; border-top: 1px solid #bdc3c7; }
+        .ia-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin: 20px 0 15px 0; }
+        .ia-links a { display: inline-block; text-decoration: none; color: white; font-size: 0.82em; font-weight: bold; padding: 8px 14px; border-radius: 20px; transition: transform 0.2s, opacity 0.2s; }
+        .ia-links a:hover { transform: translateY(-2px); opacity: 0.85; }
+        .ia-claude { background-color: #c96442; }
+        .ia-chatgpt { background-color: #10a37f; }
+        .ia-copilot { background-color: #0078d4; }
+        .ia-deepseek { background-color: #4d6bfe; }
+        .ia-gemini { background-color: #8a4af3; }
+    </style>
+</head>
+<body>
+
+    <div class="main-content">
+        <h1>RECURSOS CURSO ARQUITECTOS DEL PENSAMIENTO</h1>
+        <h3 class="subtitle">Instrucciones para IA: Estudio y Creación de Contenido Cristiano</h3>
+        
+        <div class="btn-container">
+            <button class="prompt-btn" onclick="cargarPrompt('p1')">1. Delimitar Pasaje o Capítulo por Temas</button>
+            <button class="prompt-btn" onclick="cargarPrompt('p2')">2. Diseñar Bosquejos para Enseñanza Bíblica</button>
+            <button class="prompt-btn" onclick="cargarPrompt('p3')">3. Estudiar y Explicar Doctrina Bíblica</button>
+            <button class="prompt-btn" onclick="cargarPrompt('p4')">4. Esclarecer Dudas sobre Fe o Práctica</button>
+            <button class="prompt-btn" onclick="cargarPrompt('p5')">5. Creador de Speachs Litúrgicos</button>
+            <button class="prompt-btn" onclick="cargarPrompt('p6')">6. Análisis Exegético de un Texto</button>
+            <button class="prompt-btn" onclick="cargarPrompt('p7')">7. Análisis Gramatical avanzado</button>
+        </div>
+
+        <div id="area-trabajo" class="hidden">
+            <h2 id="titulo-prompt"></h2>
+            <div id="descripcion-prompt"></div>
+            <div id="campos-parametros"></div>
+            <div id="opciones-adicionales"></div>
+            <button class="copy-btn" id="btn-copiar" onclick="generarYCopiar()">Copiar Prompt Listo para IA</button>
+            <p id="mensaje-exito">¡Prompt copiado al portapapeles exitosamente!</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="ia-links">
+            <a href="https://claude.ai" target="_blank" class="ia-claude">Claude</a>
+            <a href="https://chat.openai.com" target="_blank" class="ia-chatgpt">ChatGPT</a>
+            <a href="https://copilot.microsoft.com" target="_blank" class="ia-copilot">Copilot</a>
+            <a href="https://chat.deepseek.com" target="_blank" class="ia-deepseek">DeepSeek</a>
+            <a href="https://gemini.google.com" target="_blank" class="ia-gemini">Gemini</a>
+        </div>
+        <p>Iglesia Cristiana Elim</p>
+        <p>Pastor Antonio Hermenegildo Alejo</p>
+    </footer>
+
+    <script>
+        const baseDatosPrompts = {
+            'p1': {
+                titulo: "1. Delimitar Pasaje o Capítulo Bíblico por Temas",
+                descripcion: "Analiza un capítulo completo y lo divide en unidades predicables con títulos y aplicaciones.",
+                pregunta: "¿Podrías introducir un tema o cita bíblica?",
+                plantilla: `Tu tarea es identificar los pasajes o versículos del capítulo que tengan mayor potencial para ser predicados de forma individual 
+según la tradición Reformada Confesional (Londres 1689). Para cada 'segmento predicable' que identifiques, 
+debes proporcionar la siguiente información en un formato claro y estructurado:
+
+1. El texto base: El rango de versículos específicos que conforman la unidad de predicación (No repetir versiculos entre temas)(ej. versículos 1-5, o 6-8, etc.).
+2. Un título sugerido para el sermón: Un encabezado temático que capture la esencia del pasaje.
+3. El tema central o la idea principal: Explica brevemente de qué trata ese pasaje en una o dos oraciones.
+4. Aplicación práctica para la vida actual: Describe cómo se puede aplicar la enseñanza de esos versículos en el contexto de la audiencia moderna (iglesia, vida personal, sociedad).
+5. Presentar toda la informacion anterior en una tabla donde el titulo de las columnas sean la de los puntos 1-4 anteriores. 
+
+​REGLA ESTRICTA: Imprime única y exclusivamente el análisis solicitado utilizando la estructura provista. Omite cualquier saludo, introducción, frase de cortesía, comentario inicial o conclusión final fuera de la estructura. 
+
+Necesito que realices un análisis detallado de: [PARAMETRO]`
+            },
+            'p2': {
+                titulo: "2. Diseñar Bosquejos para Enseñanza Bíblica",
+                descripcion: "Crea un esquema detallado para un sermón, usando lógica (Logos) y conexión emocional (Pathos).",
+                pregunta: "¿Podrías introducir un tema o cita bíblica?",
+                plantilla: `Actúa como un predicador con el estilo de DL Moody o Billi Graham, pero alineado a la doctrina la 2a Confesión Londres de 1689.       
+​REGLA ESTRICTA: Imprime única y exclusivamente el análisis solicitado utilizando la estructura provista. Omite cualquier saludo, introducción, frase de cortesía, comentario inicial o conclusión final fuera de la estructura.     
+A partir de una cita bíblica o un tema genera un bosquejo doctrinal y pastoral de alto impacto. 
+El contenido debe ser bíblicamente sólido, lógicamente estructurado y pastoralmente poderoso, evitando lenguaje técnico innecesario.              
+              
+Toma en cuenta que según los parámetros introducidos generarás un bosquejo reducido o extendido, la diferencia radicará en lo extenso o simple de las ideas y de los speachs de la "Primera Parte: Logos", la estructura sera la misma usando la versión de la biblia [VERSION], y con una duracion aproximada de “[DURACION]”.             
+              
+Desarrolla el contenido con la siguiente estructura de dos partes:              
+1. Tema: Indica el tema central a raíz de la cita (si yo te doy el tema restructúralo de manera que sea sencillo, comunicable y entendible).              
+2. Cita base: Presenta el versículo o pasaje principal.  
+
+(Speach para presentar la tesis, con alguna frase al final que catapulte la tesis por ejemplo "...Lo que nos lleva a pensar con toda seguridad lo siguiente: ...")             
+3. La Tesis: Formula una afirmación clara, profunda y predicable que resuma la verdad central del pasaje. (Debe ser una frase fuerte que pueda sostener todo el mensaje. Sin palabras sofisticadas).              
+              
+Primera Parte: Logos              
+Genera un speach para transicionar a la parte doctrinal,               
+4. Silogismos doctrinales:              
+Construye 3 silogismos basados en la Escritura con este formato:
+<Silogismo (1, 2 o 3)> - <título del silogismo>
+Premisa Mayor:<Argumento corto y directo><referencias biblicas solo cita sin contenido>
+Premisa Menor:<Argumento corto y directo>
+Conclusion:<Argumento>   
+Para cada silogismo agrega un speach con profundidad 
+- Primero coloca el Speach 
+- Luego una introduccion pequeña a la explicacion del silogismo 
+- Despues el silogismo.                
+              
+Segunda Parte: Conexión emocional/sentimental Pathos               
+5. Desarrollo pastoral              
+Aplica la conclusión de los silogismos con lenguaje claro y natural, usando ilustraciones simples, metáforas bíblicas o ejemplos de la vida diaria. Evita tecnicismos. Y hazlo el forma de speach en parrafos medianamente grandes.               
+              
+El desarrollo debe incluir estas cuatro partes ofreciendo siempre una palabra a Creyentes y no creyentes:              
+La Herida: Describe una lucha humana real, una duda o un dolor relacionado con el tema que conecte con la experiencia del oyente.              
+El Pilar: Explica la verdad bíblica central que sostiene la esperanza del creyente, mostrando cómo la Escritura responde a esa herida.           
+El Aliento: Presenta la gracia, el consuelo o la exhortación que surge de esa verdad para la vida diaria del creyente.         
+El Cierre: Concluye la sección con una afirmación clara y contundente que lleve al oyente a una decisión, reflexión o descanso en Dios.             
+  
+6. Frase final de impacto              
+              
+Consideraciones: Usa un tono cálido, profundo y pastoral. Dirigido a creyentes y no creyentes.              
+              
+El tema o pasaje será: [PARAMETRO]`
+            },
+            'p3': {
+                titulo: "3. Estudiar y Explicar Doctrina Bíblica",
+                descripcion: "Analiza temas doctrinales o la Confesión de 1689. Puedes escribir la doctrina, citar un número de párrafo, pegar el texto o adjuntar un documento a la IA para su análisis.",
+                pregunta: "¿Qué doctrina o párrafo te gustaría comprender?",
+                plantilla: `Actúa como un profesor de teología dentro de la tradición reformada confesional (Confesión Bautista de Londres de 1689). Tu tarea es analizar una doctrina, afirmación teológica o párrafo doctrinal y desarrollarlo de manera clara, lógica y pastoral.
+​REGLA ESTRICTA: Imprime única y exclusivamente el análisis solicitado utilizando la estructura provista. Omite cualquier saludo, introducción, frase de cortesía, comentario inicial o conclusión final fuera de la estructura. 
+INSTRUCCIÓN CRÍTICA DE ESTILO: Quiero que tu respuesta sea extremadamente concisa y directa. Debes presentar la enseñanza en forma de proposiciones breves e independientes, como si fueran puntos de un catecismo o fichas de estudio. Cada proposición debe tener un desarrollo mínimo, de una o dos frases, seguido de sus referencias bíblicas entre paréntesis. La sección final de 'Aplicación' también debe ser resumida. Evita párrafos largos, lenguaje florido y elaboración excesiva. Prioriza la claridad y la facilidad para memorizar e interiorizar.
+
+1 — DESARROLLO DE DOCTRINA BÍBLICA
+- Divide la enseñanza en proposiciones doctrinales claras.
+- Formato: [Proposición]: desarrollo breve, natural y comprensible con referencias bíblicas al final.
+- Sección final 'Aplicación': Cómo fortalece la fe, qué error evita y qué consuelo aporta (Mantenlo conciso).
+
+2 — REFUTACIÓN DE DOCTRINA ANTIBÍBLICA
+- Presenta las proposiciones de la doctrina errónea.
+- Formato: [Error doctrinal] / Refutación: explicación bíblica con referencias.
+- Sección final 'Corrección Bíblica' y 'Aplicación' (cómo evitar el error y proteger la pureza doctrinal) (Mantenlo conciso).
+
+Objetivo: Presentar la doctrina de forma clara, lógica, bíblica, pastoral y fácil de interiorizar.
+
+Tu objetivo es ayudarme a comprender profundamente el siguiente tema: [PARAMETRO]`
+            },
+            'p4': {
+                titulo: "4. Esclarecer Dudas sobre Cuestiones de Fe o Práctica",
+                descripcion: "Evalúa si una práctica es bíblica usando la Escritura, la Tradición, la Razón y la Experiencia.",
+                pregunta: "Escribe aquí tu duda.",
+                plantilla: `Actúa como un teólogo sistemático experto, con un profundo conocimiento de la Confesión de Fe Bautista de Londres de 1689 y experto en el uso metodológico del Cuadrilátero de John Wesley (Escritura, Tradición, Razón y Experiencia). Tu objetivo es esclarecer mis dudas sobre cuestiones de fe o práctica cristiana. Para cada pregunta que te haga, debes estructurar tu respuesta exactamente de la siguiente manera:
+​REGLA ESTRICTA: Imprime única y exclusivamente el análisis solicitado utilizando la estructura provista. Omite cualquier saludo, introducción, frase de cortesía, comentario inicial o conclusión final fuera de la estructura. 
+
+1. Veredicto Inicial: Elije UNA de estas tres categorías:
+• Es bíblico y practicable por la iglesia del Nuevo Testamento.
+• No es bíblico, pero puede ser practicado por la iglesia (libertad cristiana).
+• No es bíblico y no debe practicarse.
+
+2. Análisis a través del Cuadrilátero de Wesley: Evalúa a través de Escritura, Tradición, Razón y Experiencia.
+3. Postura de la Confesión de 1689: Menciona el capítulo y párrafo exacto.
+4. Aplicación Pastoral: Un consejo breve sobre cómo lidiar con este tema en la iglesia local.
+
+Mi primera duda es: [PARAMETRO]`
+            },
+            'p5': {
+                titulo: "5. Creador de Speachs Litúrgicos",
+                plantilla: `PROMPT GENERADOR DE SPEACHES LITÚRGICOS (MAESTRO DE CEREMONIAS)
+PROMPT: Actúa como un maestro de ceremonias o director de programa litúrgico en una iglesia cristiana, con un enfoque reverente, cristocéntrico y doctrinalmente sólido (alineado a la tradición reformada confesional).
+
+
+Tu tarea es generar un speach breve, claro y con autoridad espiritual para guiar a la congregación en un momento específico del culto.
+​REGLA ESTRICTA: Imprime única y exclusivamente el análisis solicitado utilizando la estructura provista. Omite cualquier saludo, introducción, frase de cortesía, comentario inicial o conclusión final fuera de la estructura. 
+
+PARÁMETROS
+ Situación del culto: [SITUACION]
+ Texto base (opcional): [TEXTOBASE]
+ Enfoque: [ENFOQUE]
+ Tono: [TONO]
+ Instrucciones adicionales: [ADICIONAL]
+
+REQUISITOS DEL SPEACH
+1. Debe ser breve y directo (no más de 1–2 minutos al hablar).
+2. Debe guiar, no predicar extensamente.
+3. Debe ser cristocéntrico, evitando moralismo.
+4. Debe incluir una verdad bíblica clara, aunque sea breve.
+5. Debe mantener un tono ordenado, reverente y natural.
+6. Debe ayudar a la congregación a entender qué está ocurriendo y cómo responder.
+7. Debe cerrar con una transición clara hacia el siguiente momento.
+
+ESTRUCTURA
+ Ubicación del momento (qué estamos haciendo)
+ Enfoque espiritual (por qué importa)
+ Breve verdad bíblica o doctrinal
+ Dirección a la congregación (qué hacer ahora)
+ Transición al siguiente elemento
+
+SALIDA ESPERADA
+Entrega un versiculo relacionado al speach y el speach listo para usarse en vivo, sin explicaciones.`
+            },
+'p6': {
+    titulo: "6. Análisis Exegético de un Texto",
+    descripcion: "Realiza un análisis bíblico claro aplicando el método gramatical, histórico y teológico con apoyo del idioma original (hebreo/griego).",
+    pregunta: "Introduce la cita bíblica a analizar",
+    plantilla: `​Actúa como un teólogo reformado experto en hermenéutica y exégesis, aplicando estrictamente el método gramatical, histórico y teológico (en la línea de Louis Berkhof). Tu objetivo es explicar el texto de forma clara, sencilla y estructurada, pero con alta rigurosidad académica y profundidad en los idiomas originales.
+​REGLA ESTRICTA: Imprime única y exclusivamente el análisis solicitado utilizando la estructura provista. Omite cualquier saludo, introducción, frase de cortesía, comentario inicial o conclusión final fuera de la estructura. 
+Analiza el siguiente pasaje bíblico:  
+[PARAMETRO]
+
+Sigue estrictamente la siguiente estructura para tu respuesta:
+​1. Texto base
+​Delimita el pasaje incluyendo el contexto inmediato necesario para no aislar la idea (máx. 4–12 versículos).
+​Preséntalo en la versión RVR60.
+​2. Análisis gramatical y sociocultural (Palabras Clave)
+​Identifica de 3 a 5 palabras clave del texto proporcionado. 
+​Para cada palabra, provee:
+​La palabra en Español y seguido de la misma palabra en su idioma original (hebreo o griego koiné) transliterada.
+Significados de la palabra:Significados de la palabra. 
+​Uso y costumbre: Explica su uso cultural cotidiano en la época de los destinatarios (ej. cómo la usaba la gente común en la calle, en el comercio, la guerra, la política o el sistema grecorromano).
+​Impacto teológico: Explica cómo el autor sagrado tomó esa palabra común y la llenó de significado teológico en este texto.
+​Explica la estructura lógica y el flujo del argumento relacionando estas palabras.
+​3. Análisis histórico
+​Quién escribe y a quién va dirigido.
+​Qué situación social,politica,cultural o religiosa específica estaban viviendo en el momento de la redacción que hace relevante este pasaje, lo mas relevante.
+​4. Análisis teológico
+​Qué enseña este texto sobre el carácter u obra de Dios.
+​Enfoque altamente Cristológico: Muestra de forma explícita y profunda cómo este pasaje apunta, revela o magnifica a la persona y obra redentora de Jesucristo. Cristo debe ser el centro del análisis teológico (si es un texto del Antiguo Testamento, traza la línea tipológica, profética o pactual hacia Él).
+​Qué enseña sobre la condición o naturaleza del hombre.
+​Qué enseña sobre el pacto, la salvación o la vida cristiana.
+​Relaciona brevemente este pasaje con el resto de la Escritura (cita 1 o 2 textos complementarios).
+​5. Comentario final
+​Resume el mensaje central del pasaje en un párrafo contundente.
+​Da una aplicación clara, directa y pastoral.
+​Señala claramente un error común de interpretación (falacia lógica, eiségesis o sesgo histórico) que se suele cometer con este pasaje y corrígelo con la evidencia expuesta.`
+},
+'p7': {
+    titulo: "7. Análisis Gramatical Quirúrgico",
+    descripcion: "Realiza un análisis gramatical avanzado del texto bíblico en idioma original, considerando tiempos verbales, voz, aspecto verbal, participios, artículos, imperativos, frecuencia de uso y si una palabra es hapax legomenon.",
+    pregunta: "Introduce la cita bíblica a analizar",
+    plantilla: `Actúa como un exegeta reformado especializado en análisis gramatical del texto bíblico en sus idiomas originales (hebreo y griego koiné), con dominio del enfoque de Louis Berkhof, explicando con precisión pero en lenguaje claro.
+​REGLA ESTRICTA: Imprime única y exclusivamente el análisis solicitado utilizando la estructura provista. Omite cualquier saludo, introducción, frase de cortesía, comentario inicial o conclusión final fuera de la estructura. 
+Analiza el siguiente pasaje bíblico:  
+**[PARAMETRO]**  
+Enfocar el análisis en: **[ENFOQUE]**
+
+
+## Instrucciones
+
+### 1. Texto base
+- Delimita el pasaje (máx. 4–12 versículos).
+- Preséntalo en RVR60.
+
+### 2. Identificación de palabras clave
+- Identifica los términos centrales del pasaje.
+- Si se indicó una palabra específica, dale prioridad.
+
+### 3. Análisis gramatical avanzado (QUIRÚRGICO)
+Para cada palabra clave relevante:
+
+#### Idioma original
+- Muestra la palabra en hebreo o griego.
+- Da su transliteración (opcional si aporta claridad).
+
+#### Significado
+- Explica su significado básico.
+- Añade matices importantes (sin tecnicismos innecesarios).
+
+#### Análisis verbal (si aplica)
+- Tiempo verbal:
+  - Aoristo, presente, perfecto, etc.
+- Voz:
+  - Activa, pasiva o media.
+- Aspecto verbal:
+  - Cómo se presenta la acción (puntual, continua, resultado vigente).
+
+Explica cómo esto afecta el significado del texto, no solo lo describas.
+
+#### Estructura gramatical
+- Participios:
+  - Función (causa, medio, resultado, condición, etc.)
+- Imperativos:
+  - Si es mandato real o descriptivo
+- Artículos definidos:
+  - Si afectan el sentido (ej. “el”, “la”)
+
+
+### 4. Relación lógica dentro del texto
+- Explica cómo las palabras clave se conectan entre sí.
+- Muestra el flujo del argumento del autor.
+- Identifica conectores lógicos (porque, para, entonces, etc.).
+
+
+### 5. Análisis léxico-estadístico (SOLO SI APLICA)
+Para la palabra clave principal:
+
+- Frecuencia aproximada en la Biblia (AT/NT).
+- Libros donde aparece con mayor concentración.
+- Uso por autor (si es relevante).
+- Indicar si es:
+  - Hapax legomenon (uso único)
+
+Aclara brevemente qué implica esto para la interpretación.
+
+No sobrevalorar la estadística: el contexto manda.
+
+
+### 6. Síntesis interpretativa
+- Explica cómo el análisis gramatical completo afecta la interpretación del pasaje.
+- Resume el sentido preciso del texto en base al análisis.
+
+
+## Reglas
+- Lenguaje claro, no excesivamente técnico.
+- Explicar siempre el impacto interpretativo, no solo datos.
+- No analizar elementos irrelevantes.
+- Priorizar profundidad útil sobre volumen.
+
+
+## Resultado esperado
+Un análisis preciso, entendible y directamente útil para interpretación bíblica seria, evitando tanto la superficialidad como el exceso académico innecesario.`,
+},            
+        };
+
+        let promptActual = '';
+
+        function toggleOtro(element, inputId) {
+            const input = document.getElementById(inputId);
+            if (element.type === 'radio') {
+                const parent = element.closest('.option-group');
+                parent.querySelectorAll('.extra-input').forEach(i => i.style.display = 'none');
+                input.style.display = element.value === "Otro" ? 'block' : 'none';
+            } else {
+                input.style.display = element.checked && element.value === "Otro" ? 'block' : 'none';
+            }
+        }
+
+        function cargarPrompt(id) {
+            promptActual = id;
+            const datos = baseDatosPrompts[id];
+            document.getElementById('titulo-prompt').innerText = datos.titulo;
+            document.getElementById('descripcion-prompt').innerText = datos.descripcion || "";
+            document.getElementById('area-trabajo').classList.remove('hidden');
+            document.getElementById('area-trabajo').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            
+            const camposContainer = document.getElementById('campos-parametros');
+            const opcionesContainer = document.getElementById('opciones-adicionales');
+            camposContainer.innerHTML = '';
+            opcionesContainer.innerHTML = '';
+
+            if (id === 'p5') {
+                camposContainer.innerHTML = `
+                    <div class="option-group">
+                        <p>Situación del culto (Selecciona una):</p>
+                        <div class="grid-options">
+                            <label><input type="radio" name="sit" value="Inicio" onclick="toggleOtro(this, 'otro-sit-txt')"> Inicio</label>
+                            <label><input type="radio" name="sit" value="Ministración" onclick="toggleOtro(this, 'otro-sit-txt')"> Ministración</label>
+                            <label><input type="radio" name="sit" value="Adoración" onclick="toggleOtro(this, 'otro-sit-txt')"> Adoración</label>
+                            <label><input type="radio" name="sit" value="Ofrendas" onclick="toggleOtro(this, 'otro-sit-txt')"> Ofrendas</label>
+                            <label><input type="radio" name="sit" value="Cierre" onclick="toggleOtro(this, 'otro-sit-txt')"> Cierre</label>
+                            <label><input type="radio" name="sit" value="Otro" onclick="toggleOtro(this, 'otro-sit-txt')"> Otro</label>
+                        </div>
+                        <input type="text" id="otro-sit-txt" class="extra-input" placeholder="Escriba la situación...">
+                    </div>
+
+                    <label>Texto base o pasaje (Opcional):</label>
+                    <input type="text" id="text-base" placeholder="Ej: Salmo 121:1-2">
+
+                    <div class="option-group">
+                        <p>Enfoques (Puedes marcar varios):</p>
+                        <div class="grid-options">
+                            <label><input type="checkbox" name="enf" value="Cruz"> Cruz</label>
+                            <label><input type="checkbox" name="enf" value="Gratitud"> Gratitud</label>
+                            <label><input type="checkbox" name="enf" value="Reverencia"> Reverencia</label>
+                            <label><input type="checkbox" name="enf" value="Arrepentimiento"> Arrepentimiento</label>
+                            <label><input type="checkbox" name="enf" value="Adoración"> Adoración</label>
+                            <label><input type="checkbox" name="enf" value="Soberanía"> Soberanía</label>
+                            <label><input type="checkbox" name="enf" value="Gracia"> Gracia</label>
+                            <label><input type="checkbox" name="enf" value="Otro" onchange="toggleOtro(this, 'otro-enf-txt')"> Otro</label>
+                        </div>
+                        <input type="text" id="otro-enf-txt" class="extra-input" placeholder="Escriba el enfoque...">
+                    </div>
+
+                    <div class="option-group">
+                        <p>Tono del speach (Selecciona uno):</p>
+                        <div class="grid-options">
+                            <label><input type="radio" name="tono" value="Solemne" onclick="toggleOtro(this, 'otro-tono-txt')"> Solemne</label>
+                            <label><input type="radio" name="tono" value="Íntimo" onclick="toggleOtro(this, 'otro-tono-txt')"> Íntimo</label>
+                            <label><input type="radio" name="tono" value="Gozoso" onclick="toggleOtro(this, 'otro-tono-txt')"> Gozoso</label>
+                            <label><input type="radio" name="tono" value="Reverente" onclick="toggleOtro(this, 'otro-tono-txt')"> Reverente</label>
+                            <label><input type="radio" name="tono" value="Exhortativo" onclick="toggleOtro(this, 'otro-tono-txt')"> Exhortativo</label>
+                            <label><input type="radio" name="tono" value="Otro" onclick="toggleOtro(this, 'otro-tono-txt')"> Otro</label>
+                        </div>
+                        <input type="text" id="otro-tono-txt" class="extra-input" placeholder="Escriba el tono...">
+                    </div>
+
+                    <label>Instrucciones adicionales:</label>
+                    <textarea id="inst-adic" rows="2" placeholder="Ej: conectar con canto, preparar ambiente..."></textarea>
+                `;
+            } else {
+                if (id === 'p7') {
+                    camposContainer.innerHTML = `
+                        <label>${datos.pregunta}</label>
+                        <textarea id="input-parametro" rows="3" placeholder="Ej: Romanos 6:1-4"></textarea>
+
+                        <label>Palabra o frase clave a enfocar (opcional):</label>
+                        <input type="text" id="input-enfoque" placeholder="Ej: justificados, sois salvos, fe, carne">
+                    `;
+                } else {
+                    camposContainer.innerHTML = `<label>${datos.pregunta}</label><textarea id="input-parametro" rows="3" placeholder="Escribe aquí..."></textarea>`;
+                }
+
+                if (id === 'p2') {
+                                opcionesContainer.innerHTML = `
+                                    <div class="radio-group">
+                                        <p>Tamaño del sermón:</p>
+                                        <input type="radio" name="duracion" value="15 mins" checked> Bosquejo corto<br>
+                                        <input type="radio" name="duracion" value="45 mins"> Bosquejo completo
+                                    </div>
+                                    <div class="radio-group">
+                                        <p>Versión de la Biblia:</p>
+                                        <input type="radio" name="version" value="RVR60" checked> RVR60 
+                                        <input type="radio" name="version" value="TLA"> TLA 
+                                        <input type="radio" name="version" value="NTV"> NTV 
+                                        <input type="radio" name="version" value="NVI"> NVI
+                                    </div>`;
+                            }
+                }
+                document.getElementById('mensaje-exito').style.display = 'none';
+
+            // Enfocar el primer campo disponible
+            setTimeout(() => {
+                const primerCampo = document.querySelector('#campos-parametros textarea, #campos-parametros input[type="text"]');
+                if (primerCampo) primerCampo.focus();
+            }, 100);
+        }
+
+        function obtenerRadio(name, otroId) {
+            const rb = document.querySelector(`input[name="${name}"]:checked`);
+            if (!rb) return 'No especificado';
+            return rb.value === "Otro" ? document.getElementById(otroId).value : rb.value;
+        }
+
+        function obtenerChecks(name, otroId) {
+            let sel = Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(c => c.value);
+            if (sel.includes("Otro")) {
+                sel = sel.filter(v => v !== "Otro");
+                const val = document.getElementById(otroId).value;
+                if (val) sel.push(val);
+            }
+            return sel.join(', ') || 'No especificado';
+        }
+
+        function generarYCopiar() {
+            const datos = baseDatosPrompts[promptActual];
+            let textoFinal = datos.plantilla;
+
+            if (promptActual === 'p5') {
+                textoFinal = textoFinal.replace('[SITUACION]', obtenerRadio('sit', 'otro-sit-txt'))
+                                       .replace('[TEXTOBASE]', document.getElementById('text-base').value || 'No especificado')
+                                       .replace('[ENFOQUE]', obtenerChecks('enf', 'otro-enf-txt'))
+                                       .replace('[TONO]', obtenerRadio('tono', 'otro-tono-txt'))
+                                       .replace('[ADICIONAL]', document.getElementById('inst-adic').value || 'Ninguna');
+            } else {
+                const valorUsuario = document.getElementById('input-parametro').value;
+                 textoFinal = textoFinal.replace('[PARAMETRO]', valorUsuario);
+
+                if (promptActual === 'p7') {
+                const enfoque = document.getElementById('input-enfoque').value || 'No especificado';
+                textoFinal = textoFinal.replace('[ENFOQUE]', enfoque);
+                }
+
+                if (promptActual === 'p2') {
+                    const dur = document.querySelector('input[name="duracion"]:checked').value;
+                    const ver = document.querySelector('input[name="version"]:checked').value;
+                    textoFinal = textoFinal.replace('[DURACION]', dur).replace('[VERSION]', ver);
+                }
+            }
+
+            const tempTextArea = document.createElement("textarea");
+            tempTextArea.value = textoFinal;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            // Mostrar mensaje brevemente y luego resetear todo
+            const msj = document.getElementById('mensaje-exito');
+            msj.style.display = 'block';
+            setTimeout(() => {
+                msj.style.display = 'none';
+                // Colapsar área de trabajo y limpiar estado
+                document.getElementById('area-trabajo').classList.add('hidden');
+                document.getElementById('titulo-prompt').innerText = '';
+                document.getElementById('descripcion-prompt').innerText = '';
+                document.getElementById('campos-parametros').innerHTML = '';
+                document.getElementById('opciones-adicionales').innerHTML = '';
+                promptActual = '';
+                // Scroll al inicio
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
