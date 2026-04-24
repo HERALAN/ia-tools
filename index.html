@@ -3,62 +3,288 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recursos Curso Arquitectos del Pensamiento</title>
+    <title>IA-Tools Arquitectos del Pensamiento</title>
     <style>
         :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #34495e;
+            --primary-color: #23395d;
+            --secondary-color: #406080;
             --accent-color: #27ae60;
-            --bg-color: #ecf0f1;
+            --accent-dark: #1f8f50;
+            --bg-color: #eef3f8;
+            --text-color: #1d2733;
+            --card-color: rgba(255, 255, 255, 0.92);
+            --border-color: rgba(35, 57, 93, 0.14);
+            --muted-color: #64748b;
+            --shadow: 0 18px 45px rgba(30, 41, 59, 0.14);
+            --hero-gradient: linear-gradient(135deg, #23395d, #27ae60);
         }
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            background-color: var(--bg-color);
-            color: #333;
+
+        body.dark-mode {
+            --primary-color: #8fb7ff;
+            --secondary-color: #b8c7dc;
+            --accent-color: #38d47f;
+            --accent-dark: #20a85e;
+            --bg-color: #0f172a;
+            --text-color: #e5edf7;
+            --card-color: rgba(15, 23, 42, 0.88);
+            --border-color: rgba(255, 255, 255, 0.12);
+            --muted-color: #aab7c8;
+            --shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+            --hero-gradient: linear-gradient(135deg, #6ea8ff, #38d47f);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background:
+                radial-gradient(circle at top left, rgba(39, 174, 96, 0.18), transparent 32%),
+                radial-gradient(circle at top right, rgba(44, 62, 80, 0.16), transparent 30%),
+                var(--bg-color);
+            color: var(--text-color);
             line-height: 1.6;
-            padding: 20px; 
-            max-width: 800px; 
+            padding: clamp(14px, 3vw, 28px);
+            max-width: 1050px;
             margin: auto;
             display: flex;
             flex-direction: column;
-            min-height: 95vh;
+            min-height: 100vh;
+            transition: background-color 0.25s ease, color 0.25s ease;
         }
-        .main-content { flex: 1; }
-        h1 { text-align: center; color: var(--primary-color); font-size: 1.8em; text-transform: uppercase; margin-bottom: 5px; }
-        .subtitle { text-align: center; color: var(--secondary-color); font-size: 1.1em; font-weight: normal; margin-top: 0; margin-bottom: 30px; border-bottom: 2px solid var(--primary-color); padding-bottom: 15px; }
-        .btn-container { display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 20px; }
-        .prompt-btn { background-color: var(--primary-color); color: white; border: none; padding: 15px; font-size: 16px; border-radius: 5px; cursor: pointer; transition: background 0.3s; text-align: left; font-weight: bold; }
-        .prompt-btn:hover { background-color: var(--secondary-color); }
-        .hidden { display: none; }
-        #area-trabajo { background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-top: 20px; }
-        #titulo-prompt { color: var(--primary-color); margin-top: 0; margin-bottom: 5px; }
-        #descripcion-prompt { color: #666; font-size: 0.95em; margin-bottom: 20px; font-style: italic; }
-        label { font-weight: bold; display: block; margin-top: 15px; color: var(--secondary-color); }
-        textarea, input[type="text"] { width: 100%; padding: 12px; margin-top: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; font-size: 16px; font-family: inherit; }
-        .option-group { margin: 15px 0; padding: 15px; border: 1px solid #eee; border-radius: 5px; background-color: #fcfcfc; }
-        .option-group p { margin: 0 0 10px 0; font-weight: bold; color: var(--secondary-color); border-bottom: 1px solid #eee; padding-bottom: 5px; }
-        .radio-group { margin: 15px 0; padding: 10px; border: 1px solid #eee; border-radius: 5px; }
-        .grid-options { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-        .extra-input { margin-top: 8px; display: none; height: 40px; border-color: var(--accent-color); }
-        .copy-btn { background-color: var(--accent-color); color: white; border: none; padding: 15px; margin-top: 20px; width: 100%; font-size: 18px; font-weight: bold; border-radius: 5px; cursor: pointer; transition: background 0.3s; }
-        .copy-btn:hover { background-color: #219a52; }
-        #mensaje-exito { color: var(--accent-color); text-align: center; font-weight: bold; margin-top: 15px; display: none; }
-        footer { text-align: center; font-size: 0.85em; color: #7f8c8d; margin-top: 50px; padding-top: 20px; border-top: 1px solid #bdc3c7; }
-        .ia-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin: 20px 0 15px 0; }
-        .ia-links a { display: inline-block; text-decoration: none; color: white; font-size: 0.82em; font-weight: bold; padding: 8px 14px; border-radius: 20px; transition: transform 0.2s, opacity 0.2s; }
-        .ia-links a:hover { transform: translateY(-2px); opacity: 0.85; }
+
+        .main-content { flex: 1; width: 100%; }
+
+        .hero {
+            text-align: center;
+            padding: clamp(22px, 5vw, 52px) clamp(16px, 4vw, 44px);
+            margin-bottom: 24px;
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            background: var(--card-color);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(12px);
+        }
+
+        h1 {
+            text-align: center;
+            margin: 0;
+            font-size: clamp(4rem, 14vw, 9.5rem);
+            line-height: 0.9;
+            letter-spacing: -0.08em;
+            font-weight: 900;
+            text-transform: none;
+            background: var(--hero-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 16px 36px rgba(35, 57, 93, 0.16);
+        }
+
+        .subtitle,
+        .section-title {
+            text-align: center;
+            color: var(--secondary-color);
+            font-size: clamp(1rem, 2.5vw, 1.28rem);
+            font-weight: 700;
+            margin: 12px auto 0;
+            max-width: 760px;
+        }
+
+        .section-title { margin-top: 8px; color: var(--secondary-color); }
+
+        .theme-toggle-wrap {
+            display: flex;
+            justify-content: center;
+            margin: 22px 0 6px;
+        }
+
+        .theme-toggle {
+            border: 1px solid var(--border-color);
+            background: var(--card-color);
+            color: var(--text-color);
+            border-radius: 999px;
+            padding: 10px 16px;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
+            transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .theme-toggle:hover { transform: translateY(-2px); border-color: var(--accent-color); }
+
+        .btn-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+            gap: clamp(10px, 2vw, 16px);
+            margin-bottom: 22px;
+        }
+
+        .prompt-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: clamp(14px, 2.5vw, 20px);
+            min-height: 68px;
+            font-size: clamp(0.96rem, 1.8vw, 1.05rem);
+            border-radius: 18px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+            text-align: left;
+            font-weight: 800;
+            box-shadow: 0 12px 26px rgba(35, 57, 93, 0.18);
+        }
+
+        .prompt-btn:hover { transform: translateY(-3px); filter: brightness(1.05); }
+        .hidden { display: none !important; }
+
+        #area-trabajo {
+            background: var(--card-color);
+            padding: clamp(18px, 4vw, 32px);
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            margin-top: 20px;
+        }
+
+        #titulo-prompt { color: var(--primary-color); margin-top: 0; margin-bottom: 5px; font-size: clamp(1.35rem, 3vw, 2rem); }
+        #descripcion-prompt { color: var(--muted-color); font-size: 1em; margin-bottom: 20px; font-style: italic; }
+        label { font-weight: 800; display: block; margin-top: 15px; color: var(--secondary-color); }
+
+        textarea,
+        input[type="text"] {
+            width: 100%;
+            padding: 13px 14px;
+            margin-top: 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            box-sizing: border-box;
+            font-size: 16px;
+            font-family: inherit;
+            background: rgba(255,255,255,0.86);
+            color: #1d2733;
+        }
+
+        body.dark-mode textarea,
+        body.dark-mode input[type="text"] { background: rgba(2, 6, 23, 0.72); color: var(--text-color); }
+
+        .option-group,
+        .radio-group {
+            margin: 16px 0;
+            padding: clamp(13px, 2vw, 18px);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            background-color: rgba(255,255,255,0.46);
+        }
+
+        body.dark-mode .option-group,
+        body.dark-mode .radio-group { background-color: rgba(2, 6, 23, 0.36); }
+
+        .option-group p,
+        .radio-group p {
+            margin: 0 0 10px 0;
+            font-weight: 900;
+            color: var(--secondary-color);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 7px;
+        }
+
+        .grid-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px 12px; }
+        .extra-input { margin-top: 8px; display: none; height: 44px; border-color: var(--accent-color); }
+
+        .copy-btn,
+        .home-btn {
+            color: white;
+            border: none;
+            padding: 16px;
+            margin-top: 20px;
+            width: 100%;
+            font-size: clamp(1rem, 2vw, 1.12rem);
+            font-weight: 900;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: transform 0.2s ease, filter 0.2s ease;
+        }
+
+        .copy-btn { background: linear-gradient(135deg, var(--accent-color), var(--accent-dark)); }
+        .home-btn { background: linear-gradient(135deg, #64748b, #334155); margin-top: 18px; }
+        .copy-btn:hover,
+        .home-btn:hover { transform: translateY(-2px); filter: brightness(1.05); }
+
+        #mensaje-exito {
+            color: var(--accent-color);
+            text-align: center;
+            font-weight: 900;
+            margin: 16px 0 6px;
+            display: none;
+            padding: 12px;
+            border: 1px solid rgba(39, 174, 96, 0.35);
+            border-radius: 14px;
+            background: rgba(39, 174, 96, 0.10);
+            position: sticky;
+            top: 12px;
+            z-index: 5;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.85em;
+            color: var(--muted-color);
+            margin-top: 42px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .ia-links {
+            display: none;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 18px 0 15px 0;
+        }
+
+        .ia-links.visible { display: flex; }
+
+        .ia-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            font-weight: 900;
+            padding: 11px 18px;
+            min-width: min(165px, 100%);
+            border-radius: 999px;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        .ia-links a:hover { transform: translateY(-2px); opacity: 0.9; }
         .ia-claude { background-color: #c96442; }
         .ia-chatgpt { background-color: #10a37f; }
         .ia-copilot { background-color: #0078d4; }
         .ia-deepseek { background-color: #4d6bfe; }
         .ia-gemini { background-color: #8a4af3; }
+
+        @media (max-width: 560px) {
+            body { padding: 12px; }
+            .hero { border-radius: 22px; padding: 28px 12px; }
+            h1 { font-size: clamp(4rem, 20vw, 6.3rem); }
+            .prompt-btn { min-height: auto; text-align: center; }
+            .ia-links a { width: 100%; }
+        }
     </style>
 </head>
 <body>
 
     <div class="main-content">
-        <h1>RECURSOS CURSO ARQUITECTOS DEL PENSAMIENTO</h1>
-        <h3 class="subtitle">Instrucciones para IA: Estudio y Creación de Contenido Cristiano</h3>
+        <section class="hero">
+            <h1>IA Tools</h1>
+            <p class="subtitle">Herramientas para el estudio y creación de contenido cristiano.</p>
+            <p class="section-title">Instrucciones para IA</p>
+            <div class="theme-toggle-wrap">
+                <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" type="button">🌙 Modo oscuro</button>
+            </div>
+        </section>
         
         <div class="btn-container">
             <button class="prompt-btn" onclick="cargarPrompt('p1')">1. Delimitar Pasaje o Capítulo por Temas</button>
@@ -81,13 +307,14 @@
     </div>
 
     <footer>
-        <div class="ia-links">
-            <a href="https://claude.ai" target="_blank" class="ia-claude">Claude</a>
-            <a href="https://chat.openai.com" target="_blank" class="ia-chatgpt">ChatGPT</a>
-            <a href="https://copilot.microsoft.com" target="_blank" class="ia-copilot">Copilot</a>
-            <a href="https://chat.deepseek.com" target="_blank" class="ia-deepseek">DeepSeek</a>
-            <a href="https://gemini.google.com" target="_blank" class="ia-gemini">Gemini</a>
+        <div class="ia-links" id="ia-links">
+            <a href="https://claude.ai" target="_blank" onclick="reiniciarPagina()" class="ia-claude">Claude</a>
+            <a href="https://chat.openai.com" target="_blank" onclick="reiniciarPagina()" class="ia-chatgpt">ChatGPT</a>
+            <a href="https://copilot.microsoft.com" target="_blank" onclick="reiniciarPagina()" class="ia-copilot">Copilot</a>
+            <a href="https://chat.deepseek.com" target="_blank" onclick="reiniciarPagina()" class="ia-deepseek">DeepSeek</a>
+            <a href="https://gemini.google.com" target="_blank" onclick="reiniciarPagina()" class="ia-gemini">Gemini</a>
         </div>
+        <button class="home-btn" type="button" onclick="reiniciarPagina()">Home</button>
         <p>Iglesia Cristiana Elim</p>
         <p>Pastor Antonio Hermenegildo Alejo</p>
     </footer>
@@ -237,7 +464,7 @@ Entrega un versiculo relacionado al speach y el speach listo para usarse en vivo
 'p6': {
     titulo: "6. Análisis Exegético de un Texto",
     descripcion: "Realiza un análisis bíblico claro aplicando el método gramatical, histórico y teológico con apoyo del idioma original (hebreo/griego).",
-    pregunta: "Introduce la cita bíblica a analizar",
+    pregunta: "Introduce la cita bíblica a analizar de preferencia 1 solo versículo.",
     plantilla: `​Actúa como un teólogo reformado experto en hermenéutica y exégesis, aplicando estrictamente el método gramatical, histórico y teológico (en la línea de Louis Berkhof). Tu objetivo es explicar el texto de forma clara, sencilla y estructurada, pero con alta rigurosidad académica y profundidad en los idiomas originales.
 ​REGLA ESTRICTA: Imprime única y exclusivamente el análisis solicitado utilizando la estructura provista. Omite cualquier saludo, introducción, frase de cortesía, comentario inicial o conclusión final fuera de la estructura. 
 Analiza el siguiente pasaje bíblico:  
@@ -248,7 +475,7 @@ Sigue estrictamente la siguiente estructura para tu respuesta:
 ​Delimita el pasaje incluyendo el contexto inmediato necesario para no aislar la idea (máx. 4–12 versículos).
 ​Preséntalo en la versión RVR60.
 ​2. Análisis gramatical y sociocultural (Palabras Clave)
-​Identifica de 3 a 5 palabras clave del texto proporcionado. 
+​Identifica todas palabras del versiculo clave del texto proporcionado, si son varios versiculos  detecta las 3 o 4 palabras mas importantes o relevantes.  
 ​Para cada palabra, provee:
 ​La palabra en Español y seguido de la misma palabra en su idioma original (hebreo o griego koiné) transliterada.
 Significados de la palabra:Significados de la palabra. 
@@ -359,6 +586,38 @@ Un análisis preciso, entendible y directamente útil para interpretación bíbl
 
         let promptActual = '';
 
+        function toggleTheme() {
+            const body = document.body;
+            const btn = document.getElementById('theme-toggle');
+            body.classList.toggle('dark-mode');
+            const oscuro = body.classList.contains('dark-mode');
+            btn.textContent = oscuro ? '☀️ Modo claro' : '🌙 Modo oscuro';
+            localStorage.setItem('temaIAtools', oscuro ? 'dark' : 'light');
+        }
+
+        function aplicarTemaGuardado() {
+            const tema = localStorage.getItem('temaIAtools');
+            const btn = document.getElementById('theme-toggle');
+            if (tema === 'dark') {
+                document.body.classList.add('dark-mode');
+                if (btn) btn.textContent = '☀️ Modo claro';
+            }
+        }
+
+        function reiniciarPagina() {
+            document.getElementById('area-trabajo').classList.add('hidden');
+            document.getElementById('titulo-prompt').innerText = '';
+            document.getElementById('descripcion-prompt').innerText = '';
+            document.getElementById('campos-parametros').innerHTML = '';
+            document.getElementById('opciones-adicionales').innerHTML = '';
+            document.getElementById('mensaje-exito').style.display = 'none';
+            document.getElementById('ia-links').classList.remove('visible');
+            promptActual = '';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        document.addEventListener('DOMContentLoaded', aplicarTemaGuardado);
+
         function toggleOtro(element, inputId) {
             const input = document.getElementById(inputId);
             if (element.type === 'radio') {
@@ -462,6 +721,7 @@ Un análisis preciso, entendible y directamente útil para interpretación bíbl
                             }
                 }
                 document.getElementById('mensaje-exito').style.display = 'none';
+                document.getElementById('ia-links').classList.remove('visible');
 
             // Enfocar el primer campo disponible
             setTimeout(() => {
@@ -519,21 +779,10 @@ Un análisis preciso, entendible y directamente útil para interpretación bíbl
             document.execCommand('copy');
             document.body.removeChild(tempTextArea);
 
-            // Mostrar mensaje brevemente y luego resetear todo
             const msj = document.getElementById('mensaje-exito');
             msj.style.display = 'block';
-            setTimeout(() => {
-                msj.style.display = 'none';
-                // Colapsar área de trabajo y limpiar estado
-                document.getElementById('area-trabajo').classList.add('hidden');
-                document.getElementById('titulo-prompt').innerText = '';
-                document.getElementById('descripcion-prompt').innerText = '';
-                document.getElementById('campos-parametros').innerHTML = '';
-                document.getElementById('opciones-adicionales').innerHTML = '';
-                promptActual = '';
-                // Scroll al inicio
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }, 2000);
+            document.getElementById('ia-links').classList.add('visible');
+            document.getElementById('ia-links').scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
     </script>
 </body>
