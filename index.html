@@ -272,7 +272,70 @@
             .prompt-btn { min-height: auto; text-align: center; }
             .ia-links a { width: 100%; }
         }
-    </style>
+    
+/* ==== AJUSTES DE CONTRASTE VISUAL (SIN TOCAR PROMPTS) ==== */
+
+/* MODO CLARO - botones blancos con texto azul */
+.prompt-btn {
+    background: #ffffff !important;
+    color: #1e3a5f !important;
+    border: 1px solid rgba(30, 58, 95, 0.15);
+}
+
+.prompt-btn:hover {
+    background: #f1f5f9 !important;
+    color: #1e3a5f !important;
+}
+
+/* MODO OSCURO - paleta más oscura y suave */
+body.dark-mode {
+    --primary-color: #1e3a5f;
+    --secondary-color: #27496d;
+    --accent-color: #2ecc71;
+    --accent-dark: #27ae60;
+
+    --bg-color: #0b1220;
+    --text-color: #eaf2ff;
+
+    --card-color: rgba(10, 18, 35, 0.92);
+    --border-color: rgba(255, 255, 255, 0.08);
+
+    --muted-color: #9fb3c8;
+    --shadow: 0 18px 50px rgba(0, 0, 0, 0.5);
+
+    --hero-gradient: linear-gradient(135deg, #3a6ea5, #2ecc71);
+}
+
+/* Botones en modo oscuro */
+body.dark-mode .prompt-btn {
+    background: linear-gradient(135deg, #1f3b5c, #2c5282) !important;
+    color: #ffffff !important;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+}
+
+body.dark-mode .prompt-btn:hover {
+    filter: brightness(1.08);
+    transform: translateY(-2px);
+}
+
+/* Botón copiar */
+.copy-btn {
+    background: linear-gradient(135deg, #27ae60, #1f8f50);
+    color: white;
+}
+
+body.dark-mode .copy-btn {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+}
+
+/* Toggle */
+body.dark-mode .theme-toggle {
+    background: #162033;
+    color: #eaf2ff;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+</style>
 </head>
 <body>
 
@@ -294,6 +357,7 @@
             <button class="prompt-btn" onclick="cargarPrompt('p5')">5. Creador de Speachs Litúrgicos</button>
             <button class="prompt-btn" onclick="cargarPrompt('p6')">6. Análisis Exegético de un Texto</button>
             <button class="prompt-btn" onclick="cargarPrompt('p7')">7. Análisis Gramatical avanzado</button>
+            <button class="prompt-btn" onclick="cargarPrompt('p8')">8. Análisis Literario y Retórico</button>
         </div>
 
         <div id="area-trabajo" class="hidden">
@@ -335,7 +399,7 @@ debes proporcionar la siguiente información en un formato claro y estructurado:
 4. Aplicación práctica para la vida actual: Describe cómo se puede aplicar la enseñanza de esos versículos en el contexto de la audiencia moderna (iglesia, vida personal, sociedad).
 5. Presentar toda la informacion anterior en una tabla donde el titulo de las columnas sean la de los puntos 1-4 anteriores. 
 
-​REGLA ESTRICTA: Imprime única y exclusivamente el análisis solicitado utilizando la estructura provista. Omite cualquier saludo, introducción, frase de cortesía, comentario inicial o conclusión final fuera de la estructura. 
+REGLA ESTRICTA: Imprime única y exclusivamente el análisis solicitado utilizando la estructura provista. Omite cualquier saludo, introducción, frase de cortesía, comentario inicial o conclusión final fuera de la estructura. 
 
 Necesito que realices un análisis detallado de: [PARAMETRO]`
             },
@@ -344,7 +408,7 @@ Necesito que realices un análisis detallado de: [PARAMETRO]`
                 descripcion: "Crea un esquema detallado para un sermón, usando lógica (Logos) y conexión emocional (Pathos).",
                 pregunta: "¿Podrías introducir un tema o cita bíblica?",
                 plantilla: `Actúa como un predicador con el estilo de DL Moody o Billi Graham, pero alineado a la doctrina la 2a Confesión Londres de 1689.       
-​REGLA ESTRICTA: Imprime única y exclusivamente el análisis solicitado utilizando la estructura provista. Omite cualquier saludo, introducción, frase de cortesía, comentario inicial o conclusión final fuera de la estructura.     
+REGLA ESTRICTA: Imprime única y exclusivamente el análisis solicitado utilizando la estructura provista. Omite cualquier saludo, introducción, frase de cortesía, comentario inicial o conclusión final fuera de la estructura.     
 A partir de una cita bíblica o un tema genera un bosquejo doctrinal y pastoral de alto impacto. 
 El contenido debe ser bíblicamente sólido, lógicamente estructurado y pastoralmente poderoso, evitando lenguaje técnico innecesario.              
               
@@ -391,7 +455,7 @@ El tema o pasaje será: [PARAMETRO]`
                 descripcion: "Analiza temas doctrinales o la Confesión de 1689. Puedes escribir la doctrina, citar un número de párrafo, pegar el texto o adjuntar un documento a la IA para su análisis.",
                 pregunta: "¿Qué doctrina o párrafo te gustaría comprender?",
                 plantilla: `Actúa como un profesor de teología dentro de la tradición reformada confesional (Confesión Bautista de Londres de 1689). Tu tarea es analizar una doctrina, afirmación teológica o párrafo doctrinal y desarrollarlo de manera clara, lógica y pastoral.
-​REGLA ESTRICTA: Imprime única y exclusivamente el análisis solicitado utilizando la estructura provista. Omite cualquier saludo, introducción, frase de cortesía, comentario inicial o conclusión final fuera de la estructura. 
+REGLA ESTRICTA: Imprime única y exclusivamente el análisis solicitado utilizando la estructura provista. Omite cualquier saludo, introducción, frase de cortesía, comentario inicial o conclusión final fuera de la estructura. 
 INSTRUCCIÓN CRÍTICA DE ESTILO: Quiero que tu respuesta sea extremadamente concisa y directa. Debes presentar la enseñanza en forma de proposiciones breves e independientes, como si fueran puntos de un catecismo o fichas de estudio. Cada proposición debe tener un desarrollo mínimo, de una o dos frases, seguido de sus referencias bíblicas entre paréntesis. La sección final de 'Aplicación' también debe ser resumida. Evita párrafos largos, lenguaje florido y elaboración excesiva. Prioriza la claridad y la facilidad para memorizar e interiorizar.
 
 1 — DESARROLLO DE DOCTRINA BÍBLICA
@@ -413,7 +477,7 @@ Tu objetivo es ayudarme a comprender profundamente el siguiente tema: [PARAMETRO
                 descripcion: "Evalúa si una práctica es bíblica usando la Escritura, la Tradición, la Razón y la Experiencia.",
                 pregunta: "Escribe aquí tu duda.",
                 plantilla: `Actúa como un teólogo sistemático experto, con un profundo conocimiento de la Confesión de Fe Bautista de Londres de 1689 y experto en el uso metodológico del Cuadrilátero de John Wesley (Escritura, Tradición, Razón y Experiencia). Tu objetivo es esclarecer mis dudas sobre cuestiones de fe o práctica cristiana. Para cada pregunta que te haga, debes estructurar tu respuesta exactamente de la siguiente manera:
-​REGLA ESTRICTA: Imprime única y exclusivamente el análisis solicitado utilizando la estructura provista. Omite cualquier saludo, introducción, frase de cortesía, comentario inicial o conclusión final fuera de la estructura. 
+REGLA ESTRICTA: Imprime única y exclusivamente el análisis solicitado utilizando la estructura provista. Omite cualquier saludo, introducción, frase de cortesía, comentario inicial o conclusión final fuera de la estructura. 
 
 1. Veredicto Inicial: Elije UNA de estas tres categorías:
 • Es bíblico y practicable por la iglesia del Nuevo Testamento.
@@ -433,7 +497,7 @@ PROMPT: Actúa como un maestro de ceremonias o director de programa litúrgico e
 
 
 Tu tarea es generar un speach breve, claro y con autoridad espiritual para guiar a la congregación en un momento específico del culto.
-​REGLA ESTRICTA: Imprime única y exclusivamente el análisis solicitado utilizando la estructura provista. Omite cualquier saludo, introducción, frase de cortesía, comentario inicial o conclusión final fuera de la estructura. 
+REGLA ESTRICTA: Imprime única y exclusivamente el análisis solicitado utilizando la estructura provista. Omite cualquier saludo, introducción, frase de cortesía, comentario inicial o conclusión final fuera de la estructura. 
 
 PARÁMETROS
  Situación del culto: [SITUACION]
@@ -465,43 +529,43 @@ Entrega un versiculo relacionado al speach y el speach listo para usarse en vivo
     titulo: "6. Análisis Exegético de un Texto",
     descripcion: "Realiza un análisis bíblico claro aplicando el método gramatical, histórico y teológico con apoyo del idioma original (hebreo/griego).",
     pregunta: "Introduce la cita bíblica a analizar de preferencia 1 solo versículo.",
-    plantilla: `​Actúa como un teólogo reformado experto en hermenéutica y exégesis, aplicando estrictamente el método gramatical, histórico y teológico (en la línea de Louis Berkhof). Tu objetivo es explicar el texto de forma clara, sencilla y estructurada, pero con alta rigurosidad académica y profundidad en los idiomas originales.
-​REGLA ESTRICTA: Imprime única y exclusivamente el análisis solicitado utilizando la estructura provista. Omite cualquier saludo, introducción, frase de cortesía, comentario inicial o conclusión final fuera de la estructura. 
+    plantilla: `Actúa como un teólogo reformado experto en hermenéutica y exégesis, aplicando estrictamente el método gramatical, histórico y teológico (en la línea de Louis Berkhof). Tu objetivo es explicar el texto de forma clara, sencilla y estructurada, pero con alta rigurosidad académica y profundidad en los idiomas originales.
+REGLA ESTRICTA: Imprime única y exclusivamente el análisis solicitado utilizando la estructura provista. Omite cualquier saludo, introducción, frase de cortesía, comentario inicial o conclusión final fuera de la estructura. 
 Analiza el siguiente pasaje bíblico:  
 [PARAMETRO]
 
 Sigue estrictamente la siguiente estructura para tu respuesta:
-​1. Texto base
-​Delimita el pasaje incluyendo el contexto inmediato necesario para no aislar la idea (máx. 4–12 versículos).
-​Preséntalo en la versión RVR60.
-​2. Análisis gramatical y sociocultural (Palabras Clave)
-​Identifica todas palabras del versiculo clave del texto proporcionado, si son varios versiculos  detecta las 3 o 4 palabras mas importantes o relevantes.  
-​Para cada palabra, provee:
-​La palabra en Español y seguido de la misma palabra en su idioma original (hebreo o griego koiné) transliterada.
+1. Texto base
+Delimita el pasaje incluyendo el contexto inmediato necesario para no aislar la idea (máx. 4–12 versículos).
+Preséntalo en la versión RVR60.
+2. Análisis gramatical y sociocultural (Palabras Clave)
+Identifica todas palabras del versiculo clave del texto proporcionado, si son varios versiculos  detecta las 3 o 4 palabras mas importantes o relevantes.  
+Para cada palabra, provee:
+La palabra en Español y seguido de la misma palabra en su idioma original (hebreo o griego koiné) transliterada.
 Significados de la palabra:Significados de la palabra. 
-​Uso y costumbre: Explica su uso cultural cotidiano en la época de los destinatarios (ej. cómo la usaba la gente común en la calle, en el comercio, la guerra, la política o el sistema grecorromano).
-​Impacto teológico: Explica cómo el autor sagrado tomó esa palabra común y la llenó de significado teológico en este texto.
-​Explica la estructura lógica y el flujo del argumento relacionando estas palabras.
-​3. Análisis histórico
-​Quién escribe y a quién va dirigido.
-​Qué situación social,politica,cultural o religiosa específica estaban viviendo en el momento de la redacción que hace relevante este pasaje, lo mas relevante.
-​4. Análisis teológico
-​Qué enseña este texto sobre el carácter u obra de Dios.
-​Enfoque altamente Cristológico: Muestra de forma explícita y profunda cómo este pasaje apunta, revela o magnifica a la persona y obra redentora de Jesucristo. Cristo debe ser el centro del análisis teológico (si es un texto del Antiguo Testamento, traza la línea tipológica, profética o pactual hacia Él).
-​Qué enseña sobre la condición o naturaleza del hombre.
-​Qué enseña sobre el pacto, la salvación o la vida cristiana.
-​Relaciona brevemente este pasaje con el resto de la Escritura (cita 1 o 2 textos complementarios).
-​5. Comentario final
-​Resume el mensaje central del pasaje en un párrafo contundente.
-​Da una aplicación clara, directa y pastoral.
-​Señala claramente un error común de interpretación (falacia lógica, eiségesis o sesgo histórico) que se suele cometer con este pasaje y corrígelo con la evidencia expuesta.`
+Uso y costumbre: Explica su uso cultural cotidiano en la época de los destinatarios (ej. cómo la usaba la gente común en la calle, en el comercio, la guerra, la política o el sistema grecorromano).
+Impacto teológico: Explica cómo el autor sagrado tomó esa palabra común y la llenó de significado teológico en este texto.
+Explica la estructura lógica y el flujo del argumento relacionando estas palabras.
+3. Análisis histórico
+Quién escribe y a quién va dirigido.
+Qué situación social,politica,cultural o religiosa específica estaban viviendo en el momento de la redacción que hace relevante este pasaje, lo mas relevante.
+4. Análisis teológico
+Qué enseña este texto sobre el carácter u obra de Dios.
+Enfoque altamente Cristológico: Muestra de forma explícita y profunda cómo este pasaje apunta, revela o magnifica a la persona y obra redentora de Jesucristo. Cristo debe ser el centro del análisis teológico (si es un texto del Antiguo Testamento, traza la línea tipológica, profética o pactual hacia Él).
+Qué enseña sobre la condición o naturaleza del hombre.
+Qué enseña sobre el pacto, la salvación o la vida cristiana.
+Relaciona brevemente este pasaje con el resto de la Escritura (cita 1 o 2 textos complementarios).
+5. Comentario final
+Resume el mensaje central del pasaje en un párrafo contundente.
+Da una aplicación clara, directa y pastoral.
+Señala claramente un error común de interpretación (falacia lógica, eiségesis o sesgo histórico) que se suele cometer con este pasaje y corrígelo con la evidencia expuesta.`
 },
 'p7': {
     titulo: "7. Análisis Gramatical Quirúrgico",
     descripcion: "Realiza un análisis gramatical avanzado del texto bíblico en idioma original, considerando tiempos verbales, voz, aspecto verbal, participios, artículos, imperativos, frecuencia de uso y si una palabra es hapax legomenon.",
     pregunta: "Introduce la cita bíblica a analizar",
     plantilla: `Actúa como un exegeta reformado especializado en análisis gramatical del texto bíblico en sus idiomas originales (hebreo y griego koiné), con dominio del enfoque de Louis Berkhof, explicando con precisión pero en lenguaje claro.
-​REGLA ESTRICTA: Imprime única y exclusivamente el análisis solicitado utilizando la estructura provista. Omite cualquier saludo, introducción, frase de cortesía, comentario inicial o conclusión final fuera de la estructura. 
+REGLA ESTRICTA: Imprime única y exclusivamente el análisis solicitado utilizando la estructura provista. Omite cualquier saludo, introducción, frase de cortesía, comentario inicial o conclusión final fuera de la estructura. 
 Analiza el siguiente pasaje bíblico:  
 **[PARAMETRO]**  
 Enfocar el análisis en: **[ENFOQUE]**
@@ -581,7 +645,63 @@ No sobrevalorar la estadística: el contexto manda.
 
 ## Resultado esperado
 Un análisis preciso, entendible y directamente útil para interpretación bíblica seria, evitando tanto la superficialidad como el exceso académico innecesario.`,
-},            
+},
+'p8': {
+    titulo: "8. Análisis Literario y Retórico",
+    descripcion: "Interpreta textos bíblicos usando el método lógico de E.W. Bullinger, análisis del género literario y de las figuras retóricas.",
+    pregunta: "Introduce el texto bíblico a analizar",
+    plantilla: `Actúa como un experto en enseñar a interpretar textos literarios y bíblicos usando el método lógico de E.W. Bullinger. Tu objetivo es explicar paso a paso el significado de un texto, usando un lenguaje claro, accesible y didáctico, ideal para que el usuario pueda aprenderlo y luego enseñarlo a otros.
+
+Analiza el texto proporcionado al final siguiendo estrictamente estas instrucciones y fases. Mantén el rigor de análisis, pero explica los conceptos de forma comprensible. Entrega el resultado exactamente en la estructura definida. Cero charla introductoria o conclusiva fuera del formato.
+
+**SPOILER EXEGÉTICO**
+Antes de iniciar las fases, indica de manera directa y presentable a qué género literario pertenece el texto y cuál es la figura retórica principal que contiene, sin dar más detalles.
+
+**FASE 1: La Lectura Literal**
+Explica qué significaría el texto si lo leyéramos de manera 100% literal, como si fuera un manual científico, histórico o biológico.
+- Si la lectura literal tiene sentido lógico y es posible: Indícalo y salta a la Fase 4.
+- Si genera algo imposible, ilógico o absurdo: Escribe "ALERTA: Imposibilidad literal detectada" y pasa a la Fase 2.
+
+**FASE 2: El Conflicto (Lo que no encaja)**
+Explica de manera sencilla exactamente qué palabras o ideas chocan entre sí. ¿Por qué es imposible o absurdo leer esto de forma literal en el mundo real?
+
+**FASE 3: La Figura Literaria (La Operación)**
+Identifica qué mecanismo usó el autor para alterar la oración original.
+- Indica la acción básica: ¿El autor omitió palabras, añadió palabras de relleno para dar énfasis, o sustituyó una idea por otra incompatible?
+- **Definición didáctica:** Nombra la figura retórica y brinda una definición clara de qué significa y cómo funciona exactamente esa figura. Asume que el lector no conoce los 200 tipos de figuras, así que explícale la mecánica de esta figura en particular.
+
+**FASE 4: El Mensaje Real (La Enseñanza)**
+Traduce el texto figurado a un mensaje directo, claro y proposicional. ¿Cuál es la verdad exacta, el principio o la idea central que el autor quiso comunicar? Amplía un poco tu explicación en esta fase para asegurar que el significado quede totalmente claro y listo para ser enseñado.
+
+**FASE 5: Apoyo Exegético (Versículos de Respaldo)**
+Proporciona versículos bíblicos adicionales (textos paralelos) que sean proposicionales y directos sobre el mismo tema. Si el texto analizado era oscuro, estos versículos deben iluminar su significado. Si ya era claro, deben sostener tu conclusión con mayor peso. Explica brevemente la conexión lógica entre el texto analizado y estos versículos de respaldo.
+
+**FORMATO DE SALIDA OBLIGATORIO:**
+**Texto de Análisis:** [Versículo analizado]
+
+**SPOILER**
+* **Género Literario:** [Ej: Poesía Hebrea / Epístola / Narrativa / Profecía]
+* **Figura Retórica:** [Ej: Metonimia / Elipsis / Hipérbole / Sinécdoque]
+
+**FASE 1: La Lectura Literal**
+[Explicación de la lectura literal y validación]
+
+**FASE 2: El Conflicto**
+[Explicación sencilla de lo que choca lógicamente]
+
+**FASE 3: La Figura Literaria**
+[Acción básica + Nombre de la figura + Explicación clara de cómo funciona]
+
+**FASE 4: El Mensaje Real**
+[Explicación amplia, directa y clara del mensaje central]
+
+**FASE 5: Apoyo Exegético**
+[Citas bíblicas de respaldo y justificación de cómo confirman el Mensaje Real]
+
+---
+**PARÁMETRO DE ENTRADA**
+Analiza el siguiente texto: [PARAMETRO]`
+}            
         };
 
         let promptActual = '';
