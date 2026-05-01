@@ -389,19 +389,53 @@ body.dark-mode .theme-toggle {
                 titulo: "1. Delimitar Pasaje o Capítulo Bíblico por Temas",
                 descripcion: "Analiza un capítulo completo y lo divide en unidades predicables con títulos y aplicaciones.",
                 pregunta: "¿Podrías introducir un tema o cita bíblica?",
-                plantilla: `Tu tarea es identificar los pasajes o versículos del capítulo que tengan mayor potencial para ser predicados de forma individual 
-según la tradición Reformada Confesional (Londres 1689). Para cada 'segmento predicable' que identifiques, 
-debes proporcionar la siguiente información en un formato claro y estructurado:
+                plantilla: `Actúa como un teólogo reformado experto en hermenéutica bíblica y delimitación de pasajes.
 
-1. El texto base: El rango de versículos específicos que conforman la unidad de predicación (No repetir versiculos entre temas)(ej. versículos 1-5, o 6-8, etc.).
-2. Un título sugerido para el sermón: Un encabezado temático que capture la esencia del pasaje.
-3. El tema central o la idea principal: Explica brevemente de qué trata ese pasaje en una o dos oraciones.
-4. Aplicación práctica para la vida actual: Describe cómo se puede aplicar la enseñanza de esos versículos en el contexto de la audiencia moderna (iglesia, vida personal, sociedad).
-5. Presentar toda la informacion anterior en una tabla donde el titulo de las columnas sean la de los puntos 1-4 anteriores. 
+Tu tarea es dividir el capítulo bíblico indicado en secciones predicables, respetando el flujo natural del texto. No dividas por gusto personal, sino por cambios claros en la historia, el argumento o el énfasis del capítulo.
 
-REGLA ESTRICTA: Imprime única y exclusivamente el análisis solicitado utilizando la estructura provista. Omite cualquier saludo, introducción, frase de cortesía, comentario inicial o conclusión final fuera de la estructura. 
+REGLA ESTRICTA: Imprime única y exclusivamente el análisis solicitado utilizando la estructura provista. Omite cualquier saludo, introducción, frase de cortesía, comentario inicial o conclusión final fuera de la estructura.     
 
-Necesito que realices un análisis detallado de: [PARAMETRO]`
+## Instrucciones
+
+1. Lee el capítulo completo antes de dividirlo.
+2. Identifica el tema general del capítulo.
+3. Divide el capítulo en secciones predicables según cambios claros de:
+   - escena,
+   - tema,
+   - personaje principal,
+   - acción principal,
+   - argumento,
+   - mandato,
+   - consecuencia.
+4. No repitas versículos entre secciones.
+5. No dejes versículos importantes sin clasificar.
+6. Cada sección debe tener sentido completo para ser enseñada o predicada.
+7. Los títulos deben ser claros, doctrinales y fieles al texto.
+8. En el resumen del pasaje, explica sencillamente qué ocurre o qué se enseña en esos versículos.
+9. En la aplicación teológica, enumera solamente los rubros doctrinales que realmente apliquen a la sección, mostrando cómo el pasaje encaja en toda la revelación bíblica.
+10. Mantén una perspectiva reformada confesional.
+11. Usa lenguaje claro, directo y pastoral.
+
+## Criterios para la aplicación teológica
+En la sección “Análisis teológico”, interpreta el pasaje aplicando el tercer lente de Berkhof. 
+No lo trates como un texto aislado, sino dentro de la unidad total de la Escritura. 
+Identifica, únicamente según aplique al pasaje, qué revela sobre Dios, el hombre, el pecado, el juicio, la gracia, el pacto, Cristo, la iglesia, la redención o la consumación. 
+Explica también cómo el pasaje encaja en el progreso histórico de la redención: si prepara, promete, anticipa, cumple, apunta hacia Cristo o ilumina su obra. 
+No fuerces categorías que no estén presentes en el texto. 
+Presenta cada rubro en puntos separados, con salto de línea entre cada uno, y conserva una redacción clara, doctrinal y pastoral.
+Evita aplicaciones genéricas, moralistas o motivacionales. 
+La aplicación práctica debe nacer de la doctrina del pasaje, no de ocurrencias piadosas con perfume de púlpito improvisado.
+
+## Estructura de entrega
+### 1. Tema general del capítulo
+Explica en un párrafo breve la idea dominante del capítulo completo.
+
+### 2. Tabla de secciones predicables
+
+| Rango de versículos | Título sugerido | Resumen del pasaje | Aplicación teológica |
+|---|---|---|---|
+| vv. _-_ | Título doctrinal y claro | Resume brevemente qué ocurre o qué se enseña en esos versículos. | Enlista los rubros que apliquen sengun el texto |
+Capítulo a analizar: [PARAMETRO]`
             },
             'p2': {
                 titulo: "2. Diseñar Bosquejos para Enseñanza Bíblica",
