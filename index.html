@@ -390,57 +390,28 @@ body.dark-mode .theme-toggle {
                 titulo: "1. Delimitar Pasaje o Capítulo Bíblico por Temas",
                 descripcion: "Analiza un capítulo completo y lo divide en unidades predicables con títulos y aplicaciones.",
                 pregunta: "¿Podrías introducir un tema o cita bíblica?",
-                plantilla: `Actúa como un teólogo reformado experto en hermenéutica bíblica y delimitación de pasajes.
-
-Tu tarea es dividir el capítulo bíblico indicado en secciones predicables, respetando el flujo natural del texto. No dividas por gusto personal, sino por cambios claros en la historia, el argumento o el énfasis del capítulo.
+                plantilla: `Actúa como un exégeta y teólogo reformado confesional. Tu tarea es analizar el capítulo bíblico que te indique y dividirlo en secciones predicables (perícopes), presentando el resultado en una tabla con cuatro columnas.
 
 REGLA ESTRICTA: Imprime única y exclusivamente el análisis solicitado utilizando la estructura provista. Omite cualquier saludo, introducción, frase de cortesía, comentario inicial o conclusión final fuera de la estructura.     
 
-## Criterios para la division del capitulo en rangos de versiculos
-1. Lee el capítulo completo antes de dividirlo.
-2. Identifica el tema general del capítulo.
-3. Divide el capítulo en secciones predicables según cambios claros de: escena,tema,personaje principal,acción principal,argumento,mandato,consecuencia.
-4. No repitas versículos entre secciones.
-5. No dejes versículos importantes sin clasificar.
-6. Cada sección debe tener sentido completo para ser enseñada o predicada.
-
-## Criterios para la creacion de titulos
-1. Los títulos deben ser claros, doctrinales y fieles al texto.
-2. En el resumen del pasaje, explica sencillamente qué ocurre o qué se enseña en esos versículos.
-3. En la aplicación teológica, enumera solamente los rubros doctrinales que realmente apliquen a la sección, mostrando cómo el pasaje encaja en toda la revelación bíblica.
-
-
-## Criterios para el resumen del rango de verisculos
-Haz un resumen de alto valor del pasaje bíblico: 
-1. Identifica la idea central, 
-2. Explica el flujo del texto, 
-3. Resalta las ideas principales y menciona las riquezas importantes del pasaje, como palabras clave, contrastes, repeticiones, énfasis, mandatos, promesas, advertencias, imágenes teológicas o aplicaciones pastorales. 
-4. No entregues una paráfrasis superficial; resume lo que el texto realmente comunica en su contexto.
-5 En esta sección no interpretes todavía el pasaje. 
-6. Limítate a extraer y organizar la información explícita del texto bíblico. 
-7. No expliques significados teológicos, no hagas aplicaciones, no saques conclusiones doctrinales y no conectes aún con otros pasajes.
-
-## Criterios para la aplicación teológica
-En la sección “Análisis teológico”, interpreta el pasaje aplicando el tercer lente de Berkhof. 
-No lo trates como un texto aislado, sino dentro de la unidad total de la Escritura. 
-Identifica, únicamente según aplique al pasaje, qué revela sobre Dios, el hombre, el pecado, el juicio, la gracia, el pacto, Cristo, la iglesia, la redención o la consumación. 
-Explica también cómo el pasaje encaja en el progreso histórico de la redención: si prepara, promete, anticipa, cumple, apunta hacia Cristo o ilumina su obra. 
-No fuerces categorías que no estén presentes en el texto. 
-Presenta cada rubro en puntos separados, con salto de línea entre cada uno, y conserva una redacción clara, doctrinal y pastoral.
-Evita aplicaciones genéricas, moralistas o motivacionales. 
-La aplicación práctica debe nacer de la doctrina del pasaje, no de ocurrencias piadosas con perfume de púlpito improvisado.
-
-## Estructura de entrega
-### 1. Tema general del capítulo
-Explica en un párrafo breve la idea dominante del capítulo completo.
-
-### 2. Criterios de Entrega
-Entrega el resultado con los siguientes apartados 
-“Rango de versículos y título sugerido”, “Contenido del texto”, “Resumen del pasaje” y “Aplicación teológica”. 
-En “Rango de versículos y título sugerido”, colocarlas  Titulo: , Rango de versiculos
-En “Contenido del texto”, colocaras el texto del rango obtenido, identificando numero de versiculo, coloca entre el texto el numero de versiculo que corresponda. 
-En “Resumen del pasaje”, resumen segun los Criterios para el resumen del rango de verisculos . 
-En “Aplicación teológica”, el análisis según Criterios para la aplicación teológica.
+Instrucciones para la división en secciones:
+Identifica las unidades de pensamiento del texto según criterios gramaticales, históricos y literarios, respetando el flujo del argumento del autor sagrado. Cada sección debe ser suficientemente cohesionada como para sostener un sermón expositivo.
+Estructura de la tabla:
+Sección / Versículos
+Texto Bíblico
+Resumen Temático
+Análisis Teológico
+Especificaciones por columna:
+Sección / Versículos: Propón un título descriptivo que refleje el contenido del pasaje, seguido del rango de versículos que la comprenden.
+Texto Bíblico: Transcribe el texto correspondiente a esa sección. Usa la versión que el usuario indique; si no indica ninguna, usa la Reina-Valera 1960.
+Resumen Temático: Identifica y lista únicamente las proposiciones e ideas principales del pasaje en forma objetiva. No incluyas interpretación, aplicación ni inferencia teológica en esta columna. Solo describe lo que el texto dice en su sentido llano y gramatical.
+Análisis Teológico: Desarrolla el contenido doctrinal del pasaje bajo los siguientes criterios obligatorios:
+Método gramatical-histórico-teológico según Louis Berkhof (Teología Sistemática y Principios de Interpretación Bíblica).
+Marco confesional de la Confesión de Fe Bautista de Londres de 1689.
+Perspectiva reformada y protestante (no romanista): enfatiza la sola Scriptura, sola gratia, sola fide, solus Christus, soli Deo gloria cuando el texto lo sustente.
+Identifica los loci theologici presentes (e.g., Dios, el hombre, el pecado, la redención, la iglesia, las últimas cosas).
+Señala conexiones con el argumento redentor-histórico del texto (tipología, promesa-cumplimiento, pacto) si las hay.
+Evita la exégesis alegórica libre y toda especulación no anclada en el texto.
 
 Capítulo a analizar: [PARAMETRO]`
             },
