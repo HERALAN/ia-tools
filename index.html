@@ -356,7 +356,7 @@ body.dark-mode .theme-toggle {
             <button class="prompt-btn" onclick="cargarPrompt('p4')">4. Esclarecer Dudas sobre Fe o Práctica</button>
             <button class="prompt-btn" onclick="cargarPrompt('p5')">5. Creador de Speachs Litúrgicos</button>
             <button class="prompt-btn" onclick="cargarPrompt('p6')">6. Análisis Exegético de un Texto</button>
-            <button class="prompt-btn" onclick="cargarPrompt('p7')">7. Análisis Gramatical avanzado</button>
+            <button class="prompt-btn" onclick="cargarPrompt('p7')">7. Análisis Gramatical Avanzado</button>
             <button class="prompt-btn" onclick="cargarPrompt('p8')">8. Análisis Literario y Retórico</button>
             <button class="prompt-btn" onclick="cargarPrompt('p9')">9. Análisis Doctrinal de Canciones/Cantos</button>
         </div>
@@ -577,90 +577,35 @@ Da una aplicación clara, directa y pastoral.
 Señala claramente un error común de interpretación (falacia lógica, eiségesis o sesgo histórico) que se suele cometer con este pasaje y corrígelo con la evidencia expuesta.`
 },
 'p7': {
-    titulo: "7. Análisis Gramatical Quirúrgico",
+    titulo: "7. Análisis Gramatical Avanzado",
     descripcion: "Realiza un análisis gramatical avanzado del texto bíblico en idioma original, considerando tiempos verbales, voz, aspecto verbal, participios, artículos, imperativos, frecuencia de uso y si una palabra es hapax legomenon.",
     pregunta: "Introduce la cita bíblica a analizar",
-    plantilla: `Actúa como un exegeta reformado especializado en análisis gramatical del texto bíblico en sus idiomas originales (hebreo y griego koiné), con dominio del enfoque de Louis Berkhof, explicando con precisión pero en lenguaje claro.
+    plantilla: `Actúa como un especialista en exégesis bíblica, usando el método gramático-histórico-teológico. Analiza el siguiente versículo bíblico de manera rigurosa, objetiva y contextual, evitando alegorías infundadas, aplicaciones forzadas o doctrinas ajenas al texto.
+
 REGLA ESTRICTA: Imprime única y exclusivamente el análisis solicitado utilizando la estructura provista. Omite cualquier saludo, introducción, frase de cortesía, comentario inicial o conclusión final fuera de la estructura. 
-Analiza el siguiente pasaje bíblico:  
-**[PARAMETRO]**  
-Enfocar el análisis en: **[ENFOQUE]**
 
+VERSÍCULO A ANALIZAR: [PARAMETRO]
 
-## Instrucciones
+Sigue estos pasos obligatoriamente:
 
-### 1. Texto base
-- Delimita el pasaje (máx. 4–12 versículos).
-- Preséntalo en RVR60.
+1. Delimitación del texto – ¿Debe analizarse solo el versículo o dentro de una perícopa (unidad de pensamiento)? Indica los versículos vecinos necesarios.
+2. Análisis morfológico – Identifica palabras clave (sustantivos, verbos, adjetivos) y su función gramatical.
+3. Análisis sintáctico – Explica la relación entre sujeto, verbo, complementos, cláusulas y conectores.
+4. Contexto literario – Resume el argumento del capítulo y del libro completo.
+5. Contexto histórico – Autor, destinatarios, fecha, situación sociopolítica y propósito del libro.
+6. Sentido semántico – Significado de las palabras según su uso en el idioma original (indica si trabajas con hebreo, griego o traducción).
+7. Síntesis teológica – ¿Qué enseña el texto dentro de la teología bíblica? Relación con el pacto, Cristo, etc. sin sobreinterpretar.
+8. Errores a evitar – Señala si hay interpretaciones comunes erróneas (ej: sacar de contexto, alegorizar sin base, leer dogmas posteriores).
+9. Formato de salida:
+   - Texto y delimitación
+   - Observaciones lingüísticas (morfología + sintaxis)
+   - Contexto (literario + histórico)
+   - Exégesis (sentido semántico + síntesis teológica)
+   - Errores frecuentes a evitar
+   - Aplicación prudente y limitada al sentido original
+   - Conclusión en una oración
+   - cada palabra original, dame su trasliteracion es decir cómo se lee en español. 
 
-### 2. Identificación de palabras clave
-- Identifica los términos centrales del pasaje.
-- Si se indicó una palabra específica, dale prioridad.
-
-### 3. Análisis gramatical avanzado (QUIRÚRGICO)
-Para cada palabra clave relevante:
-
-#### Idioma original
-- Muestra la palabra en hebreo o griego.
-- Da su transliteración (opcional si aporta claridad).
-
-#### Significado
-- Explica su significado básico.
-- Añade matices importantes (sin tecnicismos innecesarios).
-
-#### Análisis verbal (si aplica)
-- Tiempo verbal:
-  - Aoristo, presente, perfecto, etc.
-- Voz:
-  - Activa, pasiva o media.
-- Aspecto verbal:
-  - Cómo se presenta la acción (puntual, continua, resultado vigente).
-
-Explica cómo esto afecta el significado del texto, no solo lo describas.
-
-#### Estructura gramatical
-- Participios:
-  - Función (causa, medio, resultado, condición, etc.)
-- Imperativos:
-  - Si es mandato real o descriptivo
-- Artículos definidos:
-  - Si afectan el sentido (ej. “el”, “la”)
-
-
-### 4. Relación lógica dentro del texto
-- Explica cómo las palabras clave se conectan entre sí.
-- Muestra el flujo del argumento del autor.
-- Identifica conectores lógicos (porque, para, entonces, etc.).
-
-
-### 5. Análisis léxico-estadístico (SOLO SI APLICA)
-Para la palabra clave principal:
-
-- Frecuencia aproximada en la Biblia (AT/NT).
-- Libros donde aparece con mayor concentración.
-- Uso por autor (si es relevante).
-- Indicar si es:
-  - Hapax legomenon (uso único)
-
-Aclara brevemente qué implica esto para la interpretación.
-
-No sobrevalorar la estadística: el contexto manda.
-
-
-### 6. Síntesis interpretativa
-- Explica cómo el análisis gramatical completo afecta la interpretación del pasaje.
-- Resume el sentido preciso del texto en base al análisis.
-
-
-## Reglas
-- Lenguaje claro, no excesivamente técnico.
-- Explicar siempre el impacto interpretativo, no solo datos.
-- No analizar elementos irrelevantes.
-- Priorizar profundidad útil sobre volumen.
-
-
-## Resultado esperado
-Un análisis preciso, entendible y directamente útil para interpretación bíblica seria, evitando tanto la superficialidad como el exceso académico innecesario.`,
 },
 'p8': {
     titulo: "8. Análisis Literario y Retórico",
