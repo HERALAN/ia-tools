@@ -353,7 +353,7 @@ body.dark-mode .theme-toggle {
             <button class="prompt-btn" onclick="cargarPrompt('p1')">1. Delimitar Pasaje o Capítulo por Temas</button>
             <button class="prompt-btn" onclick="cargarPrompt('p2')">2. Diseñar Bosquejos para Enseñanza Bíblica</button>
             <button class="prompt-btn" onclick="cargarPrompt('p3')">3. Estudiar y Explicar Doctrina Bíblica</button>
-            <button class="prompt-btn" onclick="cargarPrompt('p4')">4. Esclarecer Dudas sobre Fe o Práctica</button>
+            <button class="prompt-btn" onclick="cargarPrompt('p4')">4. Dudas sobre Fe o Práctica</button>
             <button class="prompt-btn" onclick="cargarPrompt('p5')">5. Creador de Speachs Litúrgicos</button>
             <button class="prompt-btn" onclick="cargarPrompt('p6')">6. Análisis Exegético de un Texto</button>
             <button class="prompt-btn" onclick="cargarPrompt('p7')">7. Análisis Gramatical Avanzado</button>
@@ -489,20 +489,46 @@ Objetivo: Presentar la doctrina de forma clara, lógica, bíblica, pastoral y f�
 Tu objetivo es ayudarme a comprender profundamente el siguiente tema: [PARAMETRO]`
             },
             'p4': {
-                titulo: "4. Esclarecer Dudas sobre Cuestiones de Fe o Práctica",
-                descripcion: "Evalúa si una práctica es bíblica usando la Escritura, la Tradición, la Razón y la Experiencia.",
+                titulo: "4. Dudas sobre Fe o Práctica",
+                descripcion: "Esclarece una duda, considerando la regla de Lerins, Patrística, Cuadrilatero de Wesley.",
                 pregunta: "Escribe aquí tu duda.",
-                plantilla: `Actúa como un teólogo sistemático experto, con un profundo conocimiento de la Confesión de Fe Bautista de Londres de 1689 y experto en el uso metodológico del Cuadrilátero de John Wesley (Escritura, Tradición, Razón y Experiencia). Tu objetivo es esclarecer mis dudas sobre cuestiones de fe o práctica cristiana. Para cada pregunta que te haga, debes estructurar tu respuesta exactamente de la siguiente manera:
-REGLA ESTRICTA: Imprime única y exclusivamente el análisis solicitado utilizando la estructura provista. Omite cualquier saludo, introducción, frase de cortesía, comentario inicial o conclusión final fuera de la estructura. 
+                plantilla: `Actúa como un teólogo sistemático experto, con profundo conocimiento de la Confesión de Fe Bautista de Londres de 1689,
+                del Cuadrilátero de John Wesley (Escritura, Tradición, Razón y Experiencia) y de la teología patrística. 
+                Tu objetivo es esclarecer dudas sobre cuestiones de fe o práctica cristiana con el mayor rigor académico posible.
 
-1. Veredicto Inicial: Elije UNA de estas tres categorías:
+REGLA ESTRICTA:
+Imprime única y exclusivamente el análisis solicitado usando la estructura provista. Omite cualquier saludo, introducción, comentario de cortesía o conclusión fuera de la estructura.
+
+Para cada pregunta, responde exactamente con esta estructura:
+
+1. Veredicto Inicial:
+Elige UNA de estas tres categorías:
 • Es bíblico y practicable por la iglesia del Nuevo Testamento.
 • No es bíblico, pero puede ser practicado por la iglesia (libertad cristiana).
 • No es bíblico y no debe practicarse.
 
-2. Análisis a través del Cuadrilátero de Wesley: Evalúa a través de Escritura, Tradición, Razón y Experiencia.
-3. Postura de la Confesión de 1689: Menciona el capítulo y párrafo exacto.
-4. Aplicación Pastoral: Un consejo breve sobre cómo lidiar con este tema en la iglesia local.
+2. Análisis teológico y patrístico:
+Evalúa el tema con los siguientes criterios, en este orden:
+a) Escritura.
+b) Tradición apostólica y patrística.
+c) Regla de San Vicente de Lérins: evalúa si la doctrina o práctica ha sido creída “siempre, en todas partes y por todos”.
+d) Razón teológica.
+e) Experiencia eclesial.
+
+3. Consenso de los Padres de la Iglesia:
+Resume el consenso patrístico relevante sobre el tema.
+- Cita explícitamente a los Padres más relevantes.
+- Incluye referencia bibliográfica de cada obra citada.
+- Distingue entre consenso amplio, opinión mayoritaria y opiniones minoritarias.
+
+4. Postura de la Confesión de 1689:
+Menciona el capítulo y párrafo exacto, y explica brevemente la relación con la cuestión.
+
+5. Aplicación pastoral:
+Da un consejo breve, prudente y pastoral para la iglesia local.
+
+6. Conclusión técnica:
+Resume en una sola frase si la práctica debe afirmarse, tolerarse o rechazarse.
 
 Mi primera duda es: [PARAMETRO]`
             },
