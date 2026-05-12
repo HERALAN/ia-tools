@@ -802,14 +802,12 @@ Analiza el siguiente texto: [PARAMETRO]`,
 El input puede venir en una de estas dos formas:
 1. Letra completa pegada directamente.
 2. URL de una página que contiene la letra del canto, por ejemplo YouTube, letras.com u otra fuente similar.
-Si el input es una URL:
-- No muestres el contenido completo de la letra.
-- No resumas la página.
-- No expliques el contenido del sitio.
-- No entregues el texto completo de la canción.
-- Solo usa la letra disponible en la URL como base interna para realizar el análisis doctrinal solicitado.
-- Si no puedes acceder a la letra desde la URL, responde únicamente: “No pude leer la letra desde el enlace. Pega aquí la letra completa para analizarla.”
-- No inventes letras ni completes partes faltantes.
+3. El nombre de la cancion y su interprete. 
+
+Sea cual sea la el input del usuario:
+- No muestres el contenido de la letra.
+- Limitate unicamente a leer la cancion para que la analices. 
+- Si te dan el nombre de la cancion y su interprete busca la letra en internet y haz el analisis sin mostrar la letra.
 ---
 # Formato obligatorio de salida
 Al inicio coloca este título:
