@@ -384,21 +384,28 @@ body.dark-mode .theme-toggle {
         <p>Pastor Antonio Hermenegildo Alejo</p>
     </footer>
 
-    <script src="./prompts-loader.js"></script>
     <script>
-        // Declaración inicial - se cargará desde prompts.json
-        let baseDatosPrompts = null;
+        const baseDatosPrompts = {
+            'p1': {
+                titulo: "1. Delimitar Capítulo por Temas",
+                descripcion: "Analiza un capítulo completo y lo divide en unidades predicables con títulos y aplicaciones.",
+                pregunta: "¿Podrías introducir un tema o cita bíblica?",
+                plantilla: `Actúa como un exégeta y teólogo reformado confesional. 
+Tu tarea es analizar el capítulo bíblico que te indique y dividirlo en secciones predicables (perícopes), 
 
-        // Cargar prompts desde archivo JSON al iniciar
-        document.addEventListener('DOMContentLoaded', async function() {
-            baseDatosPrompts = await cargarPromptsDesdeJSON();
-            // Aplicar tema guardado después de cargar prompts
-            if (typeof aplicarTemaGuardado === 'function') {
-                aplicarTemaGuardado();
-            }
-        });
+REGLA ESTRICTA: Imprime única y exclusivamente el análisis solicitado utilizando la estructura provista. 
+Omite cualquier saludo, introducción, frase de cortesía, comentario inicial o conclusión final fuera de la estructura.     
+En toda argumentacion, cuida tu logica teologica, no generes contenido que contradiga la escritura, la doctrina o la ontologia de Dios.
+Marco confesional de la Confesión de Fe Bautista de Londres de 1689(no necesitas incluir un comentario que haga referencia a la confesion solo apegate a ella en tus comentarios).
+Usa negritas para títulos y subtitulos y cursivas para citas bíblicas.
 
-        let promptActual = ''; 
+1. Perícope / Versículos:
+Divide el texto en unidades predicables según cambios de tema, escena, personajes, discurso, argumento, mandato, 
+clímax o estructura literaria. Da un título breve, claro y fiel al contenido, seguido del rango exacto de versículos.y una breve descripción del Periscope.
+
+Enumera los pelicopes con un inciso alfabetico mayúsculas por ejemplo "OPCION A.", y despues pregunta que inciso vas. desarrollr.
+por ejemplo: "¿Qué opción deseas que desarrolle? " y agrega un penultimo inciso que diga "Analizar todo".
+un último inciso para analizar otro capítulo. 
 
 Solo despues de la eleccion de la opción, puedes continuar desarrollando el análisis con los siguientes puntos pero solo de la opción solicitada, no analices todo el capítulo a menos que te lo indiquen.
 
@@ -602,13 +609,15 @@ Omite saludos, introducciones, comentarios previos, conclusiones externas o fras
 En toda argumentación, cuida la coherencia bíblica, lógica y teológica. No generes contenido que contradiga la Escritura, la doctrina cristiana histórica ni la ontología de Dios.
 
 OBJETIVO:
-A partir de un pasaje bíblico o un tema, genera un bosquejo hermenéutico, exegético y pastoral de alto impacto.
+A partir de un pasaje bíblico o tema, genera un bosquejo hermenéutico, exegético y pastoral de alto impacto.
+
 El contenido debe ser:
 - Bíblicamente sólido.
 - Expositivamente claro.
-- Pastoralmente confrontador.
 - Teológicamente profundo.
+- Pastoralmente confrontador.
 - Fácil de predicar.
+- Centrado en Cristo.
 - Sin tecnicismos innecesarios.
 
 Usa la versión bíblica [VERSION].
@@ -619,229 +628,197 @@ ESTRUCTURA OBLIGATORIA
 ========================
 
 1. Tema
-Título corto, fuerte, sencillo y memorable.
-No uses títulos largos ni rebuscados.
+Título corto, fuerte y memorable.
 
 2. Cita Base
-Coloca el pasaje principal completo o referenciado.
+Pasaje principal completo o referenciado.
 
-3. Introducción pastoral (Speech)
-Introduce el problema humano, la tensión espiritual o la realidad doctrinal del texto.
-Debe sentirse como predicación viva.
-Concluye catapultando naturalmente la tesis con una frase semejante a:
-“Y eso nos obliga a entender algo…”
-o
-“Lo que nos lleva inevitablemente a esta verdad…”
+3. Introducción Pastoral (Speech)
+Introduce la tensión humana, espiritual o doctrinal del texto.
+Debe sentirse como predicación viva y reverente.
+Concluye llevando naturalmente a la tesis.
 
 4. Tesis
-Una afirmación doctrinal corta, fuerte, afirmativa y confrontadora.
-Debe resumir la verdad central del pasaje.
-No uses lenguaje académico sofisticado.
+Una afirmación doctrinal corta, fuerte y confrontadora que resuma la verdad central del texto.
 
 ========================
 MARCO EXPOSITIVO
 ========================
 
-Desarrolla únicamente 3 o 4 puntos principales.
+Desarrolla únicamente 3 puntos principales.
 
 Formato obligatorio:
 
 <(1,2 o 3)> - <Título del punto>
 
-<<<<<<< HEAD
-*FASE 5: Apoyo Exegético (Versículos de Respaldo)*
-Proporciona versículos adicionales que sean proposicionales y directos sobre el mismo tema. Explica brevemente la conexión lógica que confirma tu análisis.
-              
-APLICACION PRÁCTICA           
-5. Desarrollo pastoral              
-Aplica la conclusión de los silogismos con lenguaje claro y natural, usando ilustraciones simples, metáforas bíblicas o ejemplos de la vida diaria. Evita tecnicismos. Y hazlo el forma de speach en parrafos medianamente grandes.               
-              
-El desarrollo debe incluir estas cuatro partes ofreciendo siempre una palabra a Creyentes y no creyentes:              
-La Herida: Describe una lucha humana real, una duda o un dolor relacionado con el tema que conecte con la experiencia del oyente.              
-El Pilar: Explica la verdad bíblica central que sostiene la esperanza del creyente, mostrando cómo la Escritura responde a esa herida.           
-El Aliento: Presenta la gracia, el consuelo o la exhortación que surge de esa verdad para la vida diaria del creyente.         
-El Cierre: Concluye la sección con una afirmación clara y contundente que lleve al oyente a una decisión, reflexión o descanso en Dios.             
-  
-6. Frase final de impacto              
-              
-Consideraciones: Usa un tono cálido, profundo y pastoral. Dirigido a creyentes y no creyentes.              
-              
-El tema o pasaje será: [PARAMETRO]`,
-                plantillaBosquejoExegetico: `Actúa como un exégeta y teólogo reformado confesional experto en análisis bíblico profundo. Tu tarea es realizar un análisis exegético exhaustivo del pasaje proporcionado, aplicando el método gramatical-histórico-teológico con rigor académico.
-
-REGLA ESTRICTA:
-- Imprime única y exclusivamente el análisis solicitado.
-- Omite saludos, introducciones o conclusiones fuera de la estructura.
-- En toda argumentación, cuida tu lógica teológica y la coherencia doctrinal.
-- No generes contenido que contradiga la Escritura, la doctrina o la ontología de Dios.
-- Mantén un tono académico pero accesible, evitando tecnicismos innecesarios.
-
-ESTRUCTURA OBLIGATORIA DEL ANÁLISIS EXEGÉTICO:
-
-# Análisis Exegético: [PARAMETRO]
-
-## 1. Delimitación del Texto
-- Versículos específicos a analizar
-- Contexto inmediato (pasaje circundante)
-- División de la perícopa (unidad de pensamiento)
-
-## 2. Análisis Gramatical y Palabras Clave
-Para cada palabra clave:
-- Palabra en español → idioma original (hebreo/griego transliterado)
-- Definición en el idioma original
-- Significados primarios y secundarios
-- Uso cultural y costumbre en la época
-- Impacto teológico en este contexto
-
-Explica la estructura sintáctica y el flujo lógico del argumento.
-
-## 3. Análisis Histórico
-- Autor y destinatarios
-- Contexto sociopolítico, cultural y religioso de la época
-- Por qué este pasaje era relevante en ese momento
-- Conexiones históricas con el resto de la narrativa bíblica
-
-## 4. Análisis Literario
-- Género literario (narrativa, poesía, epistolar, etc.)
-- Figuras literarias o retóricas presentes
-- Estructura del texto y énfasis intencionales
-- Paralelos internos o externos
-
-## 5. Análisis Teológico
-- Doctrinas principales que el texto enseña
-- Énfasis cristológico: ¿Cómo apunta este pasaje a Cristo o su obra?
-- Para Antiguo Testamento: línea tipológica, profética o de pacto hacia Cristo
-- ¿Qué enseña sobre Dios, el hombre, la salvación y la vida cristiana?
-- Coherencia con la teología del resto de la Escritura
-
-## 6. Exégesis del Pasaje
-Desarrolla el significado del texto:
-- Proposition principal y proposiciones secundarias
-- Argumentación lógica del autor
-- Implicaciones doctrinales directas del texto
-
-## 7. Errores de Interpretación a Evitar
-Señala claramente:
-- Malinterpretaciones comunes (eiségesis, alegorización infundada)
-- Falacias lógicas que se suelen cometer
-- Descontextualizaciones típicas
-- Sesgos históricos o teológicos frecuentes
-
-## 8. Aplicación Pastoral
-- Cómo este texto fortalece la fe del creyente
-- Aplicación directa derivada legítimamente del pasaje
-- Exhortación pastoral breve y contundente
-- Conexión con Cristo y el evangelio
-
-## 9. Conclusión
-- Resumen del mensaje central en una proposición clara
-- Relevancia teológica y espiritual
-- Una verdad práctica conclusiva
-
-El pasaje a analizar: [PARAMETRO]`,
-=======
 Texto Base:
-<Cita específica usada en este punto>
+<Cita usada>
 
 Idea Central:
-<Resumen doctrinal breve del punto>
+<Resumen doctrinal breve>
 
 Desarrollo Exegético:
-Aquí decidirás automáticamente cuál método fortalece más la exposición:
+Decide automáticamente cuál método fortalece más el texto:
 
-- Método Gramatical-Morfosintáctico
+- Método Gramatical-Histórico-Teológico
 o
-- Método Literario y Retórico de las 5 Fases (Bullinger)
+- Método Hermenéutico-Literario (Bullinger)
 
-Usa solamente el más conveniente según el texto.
+Usa solamente el más conveniente.
 
 ========================
-MÉTODO GRAMATICAL-MORFOSINTÁCTICO
+MÉTODO GRAMATICAL-HISTÓRICO-TEOLÓGICO
+(BERKHOF)
 ========================
 
-Úsalo principalmente cuando el análisis dependa de palabras, verbos, conectores o estructura doctrinal del versículo.
+Úsalo cuando el peso del texto esté en:
+- palabras clave,
+- gramática,
+- estructura doctrinal,
+- verbos,
+- conectores,
+- argumentación teológica.
 
 Desarrolla:
 
-1. Palabras clave
-Identifica únicamente las 2 o 3 palabras más relevantes del texto.
+1. Texto Base
+Delimita únicamente el contexto inmediato necesario (máx. 4–12 versículos).
+Usa [VERSION].
+
+2. Análisis gramatical y sociocultural
+Identifica únicamente 2–4 palabras clave.
 
 Para cada palabra:
-- Palabra en español.
-- Transliteración original hebrea o griega.
+- Español + transliteración hebrea/griega.
 - Significado breve.
-- Uso cultural o cotidiano en la época.
-- Impacto teológico dentro del pasaje.
+- Uso sociocultural cotidiano.
+- Impacto teológico en el texto.
 
-2. Estructura lógica
-Explica brevemente cómo fluye el argumento del autor inspirado.
+Después:
+Explica brevemente el flujo lógico del argumento relacionando esas palabras.
 
-3. Contexto histórico
-Explica únicamente el contexto histórico realmente relevante para entender el texto.
+3. Análisis histórico
+Explica brevemente:
+- autor,
+- destinatarios,
+- situación histórica/cultural relevante.
 
-4. Enfoque teológico y cristológico
+4. Análisis teológico
 Explica:
-- Qué revela sobre Dios.
-- Qué revela sobre el hombre.
-- Cómo apunta a Cristo o magnifica su obra.
-- Cómo se conecta con el pacto, la salvación o la vida cristiana.
+- qué revela sobre Dios,
+- qué revela sobre el hombre,
+- qué enseña sobre pecado, pacto, salvación o vida cristiana.
 
-5. Corrección interpretativa
-Menciona brevemente un error común de interpretación y corrígelo bíblicamente.
+ENFOQUE CRISTOLÓGICO OBLIGATORIO:
+Muestra cómo el texto apunta, anuncia, revela o magnifica a Cristo.
+
+Relaciona brevemente con 1 o 2 textos bíblicos complementarios.
+
+5. Comentario final
+Resume el mensaje central en un párrafo predicable.
+Incluye:
+- aplicación pastoral,
+- exhortación directa,
+- corrección breve de un error común de interpretación.
 
 ========================
-MÉTODO LITERARIO Y RETÓRICO
-(5 FASES - EW BULLINGER)
+MÉTODO HERMENÉUTICO-LITERARIO
+(E.W. BULLINGER)
 ========================
 
-Úsalo cuando el texto dependa de figuras literarias, lenguaje simbólico, imágenes, anomalías o tensión retórica.
+Úsalo cuando el texto dependa de:
+- figuras literarias,
+- imágenes,
+- simbolismo,
+- anomalías lógicas,
+- tensión narrativa,
+- relaciones espaciales,
+- repeticiones,
+- contrastes,
+- énfasis retórico.
 
-Desarrolla así:
+Aplica lupa sobre:
+- posiciones y movimientos,
+- orden narrativo,
+- cambios de jerarquía,
+- repeticiones,
+- palabras omitidas o intensificadas.
 
-SPOILER EXEGÉTICO
-Menciona:
-- Género literario.
-- Figura retórica principal o anomalía detectada.
+Detecta cuando aplique:
+- metáfora,
+- hipérbole,
+- antropomorfismo,
+- ironía,
+- antítesis,
+- paralelismo,
+- pleonasmo,
+- elipsis,
+- epizeuxis,
+- metonimia,
+- sinécdoque.
 
-FASE 1 — Lectura Literal
-Explica qué significaría el texto leído completamente literal.
+Formato obligatorio:
 
-Si es imposible literalmente:
+Texto de Análisis:
+<Versículo o frase>
+
+SPOILER
+
+Género Literario:
+<género>
+
+Figura Retórica:
+<figura principal>
+
+FASE 1: Lectura Literal
+Explica qué significaría leído completamente literal.
+
+Si produce imposibilidad:
 Escribe:
 “ALERTA: Imposibilidad literal detectada”.
 
-FASE 2 — El Conflicto
-Explica qué rompe la lógica literal y por qué.
+FASE 2: El Conflicto
+Explica:
+- qué no encaja literalmente,
+- qué tensión lógica o espacial aparece,
+- qué detalle cultural o narrativo es importante.
 
-FASE 3 — La Figura Literaria
-Identifica:
-- La figura retórica.
-- Cómo funciona.
-- Qué efecto produce.
+FASE 3: La Figura Literaria
+Explica:
+- nombre de la figura,
+- cómo funciona,
+- qué efecto produce,
+- cómo opera en el texto.
 
-FASE 4 — El Mensaje Real
-Explica claramente la enseñanza verdadera del texto.
-Hazlo completamente predicable.
+FASE 4: El Mensaje Real
+Explica claramente:
+- qué enseña el texto,
+- qué revela de Dios,
+- qué revela del hombre,
+- qué revela de Cristo,
+- qué debe predicarse.
 
-FASE 5 — Apoyo Exegético
-Agrega 1 o 2 textos bíblicos de apoyo y explica brevemente su conexión doctrinal.
+Hazlo completamente enseñable y predicable.
+
+FASE 5: Apoyo Exegético
+Agrega 1–2 textos bíblicos de apoyo y explica brevemente cómo confirman el análisis.
 
 ========================
 DESARROLLO PASTORAL
 ========================
 
-Después de los puntos desarrolla una aplicación pastoral amplia en formato de speech expositivo.
+Después de desarrollar los 3 puntos, realiza un speech pastoral amplio y predicable.
 
-Debe incluir obligatoriamente:
+Incluye obligatoriamente:
 
 La Herida
-Describe el pecado, vacío, religiosidad, temor o problema humano relacionado con el texto.
+Describe el pecado, vacío, temor, religiosidad o problema humano relacionado con el texto.
 
 El Pilar
 Expón la verdad bíblica que sostiene la esperanza del creyente.
 
 El Aliento
-Muestra el llamado al arrepentimiento, fe, perseverancia o consuelo en Cristo.
+Llama al arrepentimiento, fe, perseverancia o descanso en Cristo.
 
 El Cierre
 Concluye con una exhortación fuerte, reverente y directa.
@@ -852,11 +829,10 @@ Evita sentimentalismo artificial.
 
 6. Frase Final de Impacto
 Una frase corta, contundente y memorable.
-Debe cerrar como golpe de martillo. Porque aparentemente el ser humano solo reacciona cuando siente el martillo cerca de los dedos.
+Debe cerrar como martillo sobre la conciencia. Porque la gente hoy cree que puede negociar con Dios igual que negocia promociones del supermercado. Tremenda idea. Fatal resultado.
 
 El pasaje o tema será:
 [PARAMETRO]`,
->>>>>>> cb9aa4b7b26fc671dd339ebdde48fe1a7dc3627b
             },
             'p3': {
                 titulo: "3. Explicar Doctrina Confesión de Londres de 1689",
@@ -1226,11 +1202,6 @@ Gracias.
 }            
         };
 
-        // Fallback: si prompts.json falla, usar datos inline
-        if (!baseDatosPrompts) {
-            baseDatosPrompts = _baseDatosPromptsInline;
-        }
-
         let promptActual = '';
 
         function toggleTheme() {
@@ -1362,8 +1333,7 @@ Gracias.
                                         <p>Tipo de bosquejo:</p>
                                         <input type="radio" name="tipoBosquejo" value="Bosquejo sencillo" checked> Bosquejo sencillo<br>
                                         <input type="radio" name="tipoBosquejo" value="Bosquejo Logico"> Bosquejo Logico<br>
-                                        <input type="radio" name="tipoBosquejo" value="Bosquejo hermenéutico"> Bosquejo hermenéutico<br>
-                                        <input type="radio" name="tipoBosquejo" value="Bosquejo Exegético"> Bosquejo Exegético
+                                        <input type="radio" name="tipoBosquejo" value="Bosquejo hermenéutico"> Bosquejo hermenéutico
                                     </div>
                                     <div class="radio-group">
                                         <p>Versión de la Biblia:</p>
@@ -1418,10 +1388,8 @@ Gracias.
                         textoFinal = datos.plantillaBosquejoSencillo;
                     } else if (tipo === 'Bosquejo Logico') {
                         textoFinal = datos.plantillaBosquejoLogico;
-                    } else if (tipo === 'Bosquejo hermenéutico') {
-                        textoFinal = datos.plantillaBosquejoHermeneutico;
-                    } else if (tipo === 'Bosquejo Exegético') {
-                        textoFinal = datos.plantillaBosquejoExegetico;
+                    } else {
+                        textoFinal = datos.plantillaBosquejoHermeneutico || datos.plantillaBosquejoLogico;
                     }
                     const valorUsuario = document.getElementById('input-parametro').value;
                     textoFinal = textoFinal.replace('[PARAMETRO]', valorUsuario).replace('[TIPO]', tipo).replace('[VERSION]', ver);
