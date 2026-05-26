@@ -350,13 +350,13 @@ body.dark-mode .theme-toggle {
         </section>
         
         <div class="btn-container">
-            <button class="prompt-btn" onclick="cargarPrompt('p1')">1. Delimitar Pasaje o Capítulo por Temas</button>
-            <button class="prompt-btn" onclick="cargarPrompt('p2')">2. Diseñar Bosquejos para Enseñanza Bíblica</button>
-            <button class="prompt-btn" onclick="cargarPrompt('p3')">3. Estudiar y Explicar Doctrina Bíblica</button>
+            <button class="prompt-btn" onclick="cargarPrompt('p1')">1. Delimitar Capítulo por Temas</button>
+            <button class="prompt-btn" onclick="cargarPrompt('p2')">2. Diseñar Bosquejos para predicar</button>
+            <button class="prompt-btn" onclick="cargarPrompt('p3')">3. Analizar Doctrina Confesión de Londres 1689</button>
             <button class="prompt-btn" onclick="cargarPrompt('p4')">4. Dudas sobre Fe o Práctica</button>
             <button class="prompt-btn" onclick="cargarPrompt('p5')">5. Creador de Speachs Litúrgicos</button>
-            <button class="prompt-btn" onclick="cargarPrompt('p6')">6. Análisis Exegético de un Texto</button>
-            <button class="prompt-btn" onclick="cargarPrompt('p7')">7. Análisis Gramatical Avanzado</button>
+            <button class="prompt-btn" onclick="cargarPrompt('p6')">6. Análisis Exegético</button>
+            <button class="prompt-btn" onclick="cargarPrompt('p7')">7. Análisis Gramatical</button>
             <button class="prompt-btn" onclick="cargarPrompt('p8')">8. Análisis Literario y Retórico</button>
             <button class="prompt-btn" onclick="cargarPrompt('p9')">9. Análisis Doctrinal de Canciones/Cantos</button>
         </div>
@@ -387,7 +387,7 @@ body.dark-mode .theme-toggle {
     <script>
         const baseDatosPrompts = {
             'p1': {
-                titulo: "1. Delimitar Pasaje o Capítulo Bíblico por Temas",
+                titulo: "1. Delimitar Capítulo por Temas",
                 descripcion: "Analiza un capítulo completo y lo divide en unidades predicables con títulos y aplicaciones.",
                 pregunta: "¿Podrías introducir un tema o cita bíblica?",
                 plantilla: `Actúa como un exégeta y teólogo reformado confesional. 
@@ -460,7 +460,7 @@ para imprimir SI/NO? (si te dice que si generas el PDF y si te dice que no simpl
 Capítulo a analizar: [PARAMETRO]`
             },
             'p2': {
-                titulo: "2. Diseñar Bosquejos para Enseñanza Bíblica",
+                titulo: "2. Diseñar Bosquejos para predicar",
                 descripcion: "Crea un bosquejo bíblico para un sermón, Selecciona Bosquejo hermenéutico para incluir un analisis hermenéutico.",
                 pregunta: "¿Podrías introducir un tema o cita bíblica?",
                 plantilla: `Actúa como un predicador con el estilo de DL Moody o Billi Graham, pero alineado a la doctrina la 2a Confesión Londres de 1689.       
@@ -614,7 +614,7 @@ Consideraciones: Usa un tono cálido, profundo y pastoral. Dirigido a creyentes 
 El tema o pasaje será: [PARAMETRO]`,
             },
             'p3': {
-                titulo: "3. Estudiar y Explicar Doctrina Bíblica",
+                titulo: "3. Explicar Doctrina Confesión de Londres de 1689",
                 descripcion: "Analiza temas doctrinales o la Confesión de 1689. Puedes escribir la doctrina, citar un número de párrafo, pegar el texto o adjuntar un documento a la IA para su análisis.",
                 pregunta: "¿Qué doctrina o párrafo te gustaría comprender?",
                 plantilla: `Actúa como un profesor de teología dentro de la tradición reformada confesional 
@@ -738,7 +738,7 @@ SALIDA ESPERADA
 Entrega un versiculo relacionado al speach y el speach listo para usarse en vivo, sin explicaciones.`
             },
 'p6': {
-    titulo: "6. Análisis Exegético de un Texto",
+    titulo: "6. Análisis Exegético",
     descripcion: "Realiza un análisis bíblico claro aplicando el método gramatical, histórico y teológico con apoyo del idioma original (hebreo/griego).",
     pregunta: "Introduce la cita bíblica a analizar de preferencia 1 solo versículo.",
     plantilla: `Actúa como un teólogo reformado experto en hermenéutica y exégesis, aplicando estrictamente el método gramatical, histórico y teológico (en la línea de Louis Berkhof). Tu objetivo es explicar el texto de forma clara, sencilla y estructurada, pero con alta rigurosidad académica y profundidad en los idiomas originales.
@@ -775,7 +775,7 @@ Da una aplicación clara, directa y pastoral.
 Señala claramente un error común de interpretación (falacia lógica, eiségesis o sesgo histórico) que se suele cometer con este pasaje y corrígelo con la evidencia expuesta.`
 },
 'p7': {
-    titulo: "7. Análisis Gramatical Avanzado",
+    titulo: "7. Análisis Gramatical",
     descripcion: "Realiza un análisis gramatical avanzado del texto bíblico en idioma original, considerando tiempos verbales, voz, aspecto verbal, participios, artículos, imperativos, frecuencia de uso y si una palabra es hapax legomenon.",
     pregunta: "Introduce la cita bíblica a analizar",
     plantilla: `Actúa como un especialista en exégesis bíblica, usando el método gramático-histórico-teológico. Analiza el siguiente versículo bíblico de manera rigurosa, objetiva y contextual, evitando alegorías infundadas, aplicaciones forzadas o doctrinas ajenas al texto.
