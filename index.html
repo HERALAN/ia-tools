@@ -390,8 +390,8 @@ body.dark-mode .theme-toggle {
                 titulo: "1. Delimitar Pasaje o Capítulo Bíblico por Temas",
                 descripcion: "Analiza un capítulo completo y lo divide en unidades predicables con títulos y aplicaciones.",
                 pregunta: "¿Podrías introducir un tema o cita bíblica?",
-                plantilla: `Actúa como un exégeta y teólogo reformado confesional. Tu tarea es analizar el capítulo bíblico que te indique y dividirlo en secciones predicables (perícopes), 
-                presentando el resultado en una tabla con 3 columnas.
+                plantilla: `Actúa como un exégeta y teólogo reformado confesional. 
+Tu tarea es analizar el capítulo bíblico que te indique y dividirlo en secciones predicables (perícopes), 
 
 REGLA ESTRICTA: Imprime única y exclusivamente el análisis solicitado utilizando la estructura provista. 
 Omite cualquier saludo, introducción, frase de cortesía, comentario inicial o conclusión final fuera de la estructura.     
@@ -403,6 +403,14 @@ Divide el texto en unidades predicables según cambios de tema, escena, personaj
 clímax o estructura literaria. Da un título breve, claro y fiel al contenido, seguido del rango exacto de versículos.
 Cada perícope debe poder sostener una exposición bíblica coherente.
 
+enumera los pelicopes con un inciso alfabetico, y despues antes de continuar pregunta que inciso desea que desarrolle,
+por ejemplo: "¿Qué inciso deseas que desarrolle? A/B/C..." y agrega un inciso al ultimo que diga "Analizar todo"
+y solo desarrolla el inciso que el usuario elija, luego de desarrollar el inciso pregunta 
+si desea que desarrolle otro inciso o si desea terminar el análisis.
+
+despues de la eleccion del inciso, desarrolla el análisis con los siguientes puntos:
+
+1. Perícope / Versículos:
 2. Resumen Historico: Identifica y presenta un resumen histórico, geográfico, cultural, 
 político, religioso o social relevante para entender el contexto del pasaje. (como seguramente cada capitulo 
 ocupara varias veces este modulo solo presenta informacion relevante y no repitas informacion que ya hayas 
