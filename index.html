@@ -384,8 +384,25 @@ body.dark-mode .theme-toggle {
         <p>Pastor Antonio Hermenegildo Alejo</p>
     </footer>
 
+    <script src="./prompts-loader.js"></script>
     <script>
-        const baseDatosPrompts = {
+        // Declaración inicial - se cargará desde prompts.json
+        let baseDatosPrompts = null;
+
+        // Cargar prompts desde archivo JSON al iniciar
+        document.addEventListener('DOMContentLoaded', async function() {
+            baseDatosPrompts = await cargarPromptsDesdeJSON();
+            // Aplicar tema guardado después de cargar prompts
+            if (typeof aplicarTemaGuardado === 'function') {
+                aplicarTemaGuardado();
+            }
+        });
+
+        // ============================================
+        // DECLARACIÓN INLINE PRESERVADA PARA COMPATIBILIDAD
+        // (Se puede remover una vez se valide que prompts.json funciona correctamente)
+        // ============================================
+        const _baseDatosPromptsInline = {
             'p1': {
                 titulo: "1. Delimitar Capítulo por Temas",
                 descripcion: "Analiza un capítulo completo y lo divide en unidades predicables con títulos y aplicaciones.",
@@ -720,6 +737,78 @@ El Cierre: Concluye la sección con una afirmación clara y contundente que llev
 Consideraciones: Usa un tono cálido, profundo y pastoral. Dirigido a creyentes y no creyentes.              
               
 El tema o pasaje será: [PARAMETRO]`,
+                plantillaBosquejoExegetico: `Actúa como un exégeta y teólogo reformado confesional experto en análisis bíblico profundo. Tu tarea es realizar un análisis exegético exhaustivo del pasaje proporcionado, aplicando el método gramatical-histórico-teológico con rigor académico.
+
+REGLA ESTRICTA:
+- Imprime única y exclusivamente el análisis solicitado.
+- Omite saludos, introducciones o conclusiones fuera de la estructura.
+- En toda argumentación, cuida tu lógica teológica y la coherencia doctrinal.
+- No generes contenido que contradiga la Escritura, la doctrina o la ontología de Dios.
+- Mantén un tono académico pero accesible, evitando tecnicismos innecesarios.
+
+ESTRUCTURA OBLIGATORIA DEL ANÁLISIS EXEGÉTICO:
+
+# Análisis Exegético: [PARAMETRO]
+
+## 1. Delimitación del Texto
+- Versículos específicos a analizar
+- Contexto inmediato (pasaje circundante)
+- División de la perícopa (unidad de pensamiento)
+
+## 2. Análisis Gramatical y Palabras Clave
+Para cada palabra clave:
+- Palabra en español → idioma original (hebreo/griego transliterado)
+- Definición en el idioma original
+- Significados primarios y secundarios
+- Uso cultural y costumbre en la época
+- Impacto teológico en este contexto
+
+Explica la estructura sintáctica y el flujo lógico del argumento.
+
+## 3. Análisis Histórico
+- Autor y destinatarios
+- Contexto sociopolítico, cultural y religioso de la época
+- Por qué este pasaje era relevante en ese momento
+- Conexiones históricas con el resto de la narrativa bíblica
+
+## 4. Análisis Literario
+- Género literario (narrativa, poesía, epistolar, etc.)
+- Figuras literarias o retóricas presentes
+- Estructura del texto y énfasis intencionales
+- Paralelos internos o externos
+
+## 5. Análisis Teológico
+- Doctrinas principales que el texto enseña
+- Énfasis cristológico: ¿Cómo apunta este pasaje a Cristo o su obra?
+- Para Antiguo Testamento: línea tipológica, profética o de pacto hacia Cristo
+- ¿Qué enseña sobre Dios, el hombre, la salvación y la vida cristiana?
+- Coherencia con la teología del resto de la Escritura
+
+## 6. Exégesis del Pasaje
+Desarrolla el significado del texto:
+- Proposition principal y proposiciones secundarias
+- Argumentación lógica del autor
+- Implicaciones doctrinales directas del texto
+
+## 7. Errores de Interpretación a Evitar
+Señala claramente:
+- Malinterpretaciones comunes (eiségesis, alegorización infundada)
+- Falacias lógicas que se suelen cometer
+- Descontextualizaciones típicas
+- Sesgos históricos o teológicos frecuentes
+
+## 8. Aplicación Pastoral
+- Cómo este texto fortalece la fe del creyente
+- Aplicación directa derivada legítimamente del pasaje
+- Exhortación pastoral breve y contundente
+- Conexión con Cristo y el evangelio
+
+## 9. Conclusión
+- Resumen del mensaje central en una proposición clara
+- Relevancia teológica y espiritual
+- Una verdad práctica conclusiva
+
+El pasaje a analizar: [PARAMETRO]`,
             },
             'p3': {
                 titulo: "3. Explicar Doctrina Confesión de Londres de 1689",
@@ -1089,6 +1178,11 @@ Gracias.
 }            
         };
 
+        // Fallback: si prompts.json falla, usar datos inline
+        if (!baseDatosPrompts) {
+            baseDatosPrompts = _baseDatosPromptsInline;
+        }
+
         let promptActual = '';
 
         function toggleTheme() {
@@ -1220,7 +1314,8 @@ Gracias.
                                         <p>Tipo de bosquejo:</p>
                                         <input type="radio" name="tipoBosquejo" value="Bosquejo sencillo" checked> Bosquejo sencillo<br>
                                         <input type="radio" name="tipoBosquejo" value="Bosquejo Logico"> Bosquejo Logico<br>
-                                        <input type="radio" name="tipoBosquejo" value="Bosquejo hermenéutico"> Bosquejo hermenéutico
+                                        <input type="radio" name="tipoBosquejo" value="Bosquejo hermenéutico"> Bosquejo hermenéutico<br>
+                                        <input type="radio" name="tipoBosquejo" value="Bosquejo Exegético"> Bosquejo Exegético
                                     </div>
                                     <div class="radio-group">
                                         <p>Versión de la Biblia:</p>
@@ -1275,8 +1370,10 @@ Gracias.
                         textoFinal = datos.plantillaBosquejoSencillo;
                     } else if (tipo === 'Bosquejo Logico') {
                         textoFinal = datos.plantillaBosquejoLogico;
-                    } else {
-                        textoFinal = datos.plantillaBosquejoHermeneutico || datos.plantillaBosquejoLogico;
+                    } else if (tipo === 'Bosquejo hermenéutico') {
+                        textoFinal = datos.plantillaBosquejoHermeneutico;
+                    } else if (tipo === 'Bosquejo Exegético') {
+                        textoFinal = datos.plantillaBosquejoExegetico;
                     }
                     const valorUsuario = document.getElementById('input-parametro').value;
                     textoFinal = textoFinal.replace('[PARAMETRO]', valorUsuario).replace('[TIPO]', tipo).replace('[VERSION]', ver);
