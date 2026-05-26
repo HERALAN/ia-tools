@@ -470,7 +470,114 @@ Capítulo a analizar: [PARAMETRO]`
                 titulo: "2. Diseñar Bosquejos para Enseñanza Bíblica",
                 descripcion: "Crea un bosquejo bíblico para un sermón, Selecciona Bosquejo hermenéutico para incluir un analisis hermenéutico.",
                 pregunta: "¿Podrías introducir un tema o cita bíblica?",
-                plantilla: `Actúa como un predicador con el estilo de DL Moody o Billi Graham, pero alineado a la doctrina la 2a Confesión Londres de 1689.       
+                plantillaBosquejoSencillo: `Actúa como un predicador y expositor bíblico dentro de una línea reformada confesional, fiel al contexto histórico-gramatical del texto.  
+Tu tarea es elaborar un bosquejo sencillo, sólido y completamente predicable del pasaje que te indique.
+
+El estilo de predicación debe reflejar la claridad, lógica, sobriedad, profundidad bíblica y tono pastoral característicos de John MacArthur:
+- Exposición centrada completamente en el texto.
+- Argumentación lógica y progresiva.
+- Tono reverente, directo y pastoral.
+- Aplicaciones confrontadoras pero sobrias.
+- Centralidad absoluta de Dios, Cristo y la autoridad de la Escritura.
+- Evita emocionalismo artificial, exageraciones teatrales o lenguaje sensacionalista.
+- El speech debe sentirse como predicación expositiva seria y madura.
+
+REGLA ESTRICTA:
+- Imprime única y exclusivamente el bosquejo solicitado.
+- No agregues saludos, introducciones ni conclusiones fuera de la estructura.
+- El bosquejo SIEMPRE debe contener únicamente 3 puntos principales.
+- En cada punto decide qué fortalece más la exposición:
+  - análisis gramatical sencillo
+  - o figura literaria/figura de dicción relevante
+- NO uses ambos en el mismo punto salvo que sea realmente necesario.
+- No hagas análisis técnicos excesivos.
+- Selecciona únicamente lo más relevante para la predicación.
+- El análisis debe fortalecer el argumento doctrinal y pastoral del sermón.
+
+PARÁMETRO DE ENTRADA:
+[PARÁMETRO] = <cita bíblica o tema a analizar>
+
+ESTRUCTURA OBLIGATORIA:
+
+# Título del sermón
+
+## Texto base:
+<coloca el pasaje>
+
+## Tesis:
+<idea central breve, doctrinal y contundente>
+
+## Introducción:
+<contexto breve del pasaje y planteamiento del problema o verdad central>
+
+# Punto 1: <título del punto>
+
+## Explicación bíblica:
+<explicación clara, lógica y textual>
+
+## Análisis gramatical o figura literaria:
+- Tipo: <gramatical o figura literaria>
+- Elemento analizado:
+<explicación breve y relevante>
+
+## Aplicación pastoral:
+<aplicación directa derivada legítimamente del texto>
+
+## Speech:
+<desarrollo pastoral estilo John MacArthur: expositivo, lógico, sobrio, centrado en la Escritura y doctrinalmente sólido>
+
+---
+
+# Punto 2: <título del punto>
+
+## Explicación bíblica:
+<explicación clara y textual>
+
+## Análisis gramatical o figura literaria:
+- Tipo: <gramatical o figura literaria>
+- Elemento analizado:
+<explicación breve y relevante>
+
+## Aplicación pastoral:
+<aplicación práctica y confrontadora>
+
+## Speech:
+<desarrollo pastoral estilo John MacArthur>
+
+---
+
+# Punto 3: <título del punto>
+
+## Explicación bíblica:
+<explicación clara y centrada en el texto>
+
+## Análisis gramatical o figura literaria:
+- Tipo: <gramatical o figura literaria>
+- Elemento analizado:
+<explicación breve y relevante>
+
+## Aplicación pastoral:
+<aplicación al corazón, obediencia y vida cristiana>
+
+## Speech:
+<desarrollo pastoral estilo John MacArthur, conectando con Cristo, santidad y autoridad bíblica>
+
+---
+
+# Conclusión:
+- Resume la tesis.
+- Conecta el texto con Cristo y el evangelio.
+- Termina con una frase final breve, seria y contundente.
+
+AL FINAL DE LA RESPUESTA IMPRIME EXACTAMENTE:
+
+Indica sobre que deseas elaborar el bosquejo: 
+- Puede ser una cita bíblica.
+- Puede ser un tema doctrinal.
+- Puede ser un personaje bíblico.
+
+El pasaje o tema será: [PARAMETRO]`,
+                plantillaBosquejoLogico: `Actúa como un predicador con el estilo de DL Moody o Billi Graham, pero alineado a la doctrina la 2a Confesión Londres de 1689.       
 
 REGLA ESTRICTA: Imprime única y exclusivamente el análisis solicitado utilizando la estructura provista. 
 Omite cualquier saludo, introducción, frase de cortesía, comentario inicial o conclusión final fuera de la estructura.
@@ -522,7 +629,7 @@ El Cierre: Concluye la sección con una afirmación clara y contundente que llev
 Consideraciones: Usa un tono cálido, profundo y pastoral. Dirigido a creyentes y no creyentes.              
               
 El tema o pasaje será: [PARAMETRO]`,
-                plantilla2: `Actúa como un predicador con el estilo de DL Moody o Leonard Revenhill, alineado a la doctrina la 2a Confesión Londres de 1689.       
+                plantillaBosquejoHermeneutico: `Actúa como un predicador con el estilo de DL Moody o Leonard Revenhill, alineado a la doctrina la 2a Confesión Londres de 1689.       
 
 REGLA ESTRICTA: Imprime única y exclusivamente el análisis solicitado utilizando la estructura provista. Omite cualquier saludo, introducción, frase de cortesía, comentario inicial o conclusión final fuera de la estructura.     
 En toda argumentacion, cuida tu logica teologica, no generes conetido que contradiga ls escritura, la doctrina o la ontologia de Dios.
@@ -1117,7 +1224,8 @@ Gracias.
                                 opcionesContainer.innerHTML = `
                                     <div class="radio-group">
                                         <p>Tipo de bosquejo:</p>
-                                        <input type="radio" name="tipoBosquejo" value="Bosquejo Simple" checked> Bosquejo Simple<br>
+                                        <input type="radio" name="tipoBosquejo" value="Bosquejo sencillo" checked> Bosquejo sencillo<br>
+                                        <input type="radio" name="tipoBosquejo" value="Bosquejo Logico"> Bosquejo Logico<br>
                                         <input type="radio" name="tipoBosquejo" value="Bosquejo hermenéutico"> Bosquejo hermenéutico
                                     </div>
                                     <div class="radio-group">
@@ -1169,7 +1277,13 @@ Gracias.
                 if (promptActual === 'p2') {
                     const tipo = document.querySelector('input[name="tipoBosquejo"]:checked').value;
                     const ver = document.querySelector('input[name="version"]:checked').value;
-                    textoFinal = tipo === 'Bosquejo hermenéutico' && datos.plantilla2 ? datos.plantilla2 : datos.plantilla;
+                    if (tipo === 'Bosquejo sencillo') {
+                        textoFinal = datos.plantillaBosquejoSencillo;
+                    } else if (tipo === 'Bosquejo Logico') {
+                        textoFinal = datos.plantillaBosquejoLogico;
+                    } else {
+                        textoFinal = datos.plantillaBosquejoHermeneutico || datos.plantillaBosquejoLogico;
+                    }
                     const valorUsuario = document.getElementById('input-parametro').value;
                     textoFinal = textoFinal.replace('[PARAMETRO]', valorUsuario).replace('[TIPO]', tipo).replace('[VERSION]', ver);
                 } else {
