@@ -350,13 +350,13 @@ body.dark-mode .theme-toggle {
         </section>
         
         <div class="btn-container">
-            <button class="prompt-btn" onclick="cargarPrompt('p1')">1. Delimitar Pasaje o Capítulo por Temas</button>
-            <button class="prompt-btn" onclick="cargarPrompt('p2')">2. Diseñar Bosquejos para Enseñanza Bíblica</button>
-            <button class="prompt-btn" onclick="cargarPrompt('p3')">3. Estudiar y Explicar Doctrina Bíblica</button>
+            <button class="prompt-btn" onclick="cargarPrompt('p1')">1. Delimitar Capítulo por Temas</button>
+            <button class="prompt-btn" onclick="cargarPrompt('p2')">2. Diseñar Bosquejos para predicar</button>
+            <button class="prompt-btn" onclick="cargarPrompt('p3')">3. Analizar Doctrina Confesión de Londres 1689</button>
             <button class="prompt-btn" onclick="cargarPrompt('p4')">4. Dudas sobre Fe o Práctica</button>
             <button class="prompt-btn" onclick="cargarPrompt('p5')">5. Creador de Speachs Litúrgicos</button>
-            <button class="prompt-btn" onclick="cargarPrompt('p6')">6. Análisis Exegético de un Texto</button>
-            <button class="prompt-btn" onclick="cargarPrompt('p7')">7. Análisis Gramatical Avanzado</button>
+            <button class="prompt-btn" onclick="cargarPrompt('p6')">6. Análisis Exegético</button>
+            <button class="prompt-btn" onclick="cargarPrompt('p7')">7. Análisis Gramatical</button>
             <button class="prompt-btn" onclick="cargarPrompt('p8')">8. Análisis Literario y Retórico</button>
             <button class="prompt-btn" onclick="cargarPrompt('p9')">9. Análisis Doctrinal de Canciones/Cantos</button>
         </div>
@@ -387,7 +387,7 @@ body.dark-mode .theme-toggle {
     <script>
         const baseDatosPrompts = {
             'p1': {
-                titulo: "1. Delimitar Pasaje o Capítulo Bíblico por Temas",
+                titulo: "1. Delimitar Capítulo por Temas",
                 descripcion: "Analiza un capítulo completo y lo divide en unidades predicables con títulos y aplicaciones.",
                 pregunta: "¿Podrías introducir un tema o cita bíblica?",
                 plantilla: `Actúa como un exégeta y teólogo reformado confesional. 
@@ -397,45 +397,39 @@ REGLA ESTRICTA: Imprime única y exclusivamente el análisis solicitado utilizan
 Omite cualquier saludo, introducción, frase de cortesía, comentario inicial o conclusión final fuera de la estructura.     
 En toda argumentacion, cuida tu logica teologica, no generes contenido que contradiga la escritura, la doctrina o la ontologia de Dios.
 Marco confesional de la Confesión de Fe Bautista de Londres de 1689(no necesitas incluir un comentario que haga referencia a la confesion solo apegate a ella en tus comentarios).
+Usa negritas para títulos y subtitulos y cursivas para citas bíblicas.
 
 1. Perícope / Versículos:
 Divide el texto en unidades predicables según cambios de tema, escena, personajes, discurso, argumento, mandato, 
-clímax o estructura literaria. Da un título breve, claro y fiel al contenido, seguido del rango exacto de versículos.
-Cada perícope debe poder sostener una exposición bíblica coherente.
+clímax o estructura literaria. Da un título breve, claro y fiel al contenido, seguido del rango exacto de versículos.y una breve descripción del Periscope.
 
-enumera los pelicopes con un inciso alfabetico, y despues antes de continuar pregunta que inciso desea que desarrolle,
-por ejemplo: "¿Qué inciso deseas que desarrolle? A/B/C..." y agrega un inciso al ultimo que diga "Analizar todo"
-y solo desarrolla el inciso que el usuario elija, luego de desarrollar el inciso pregunta 
-si desea que desarrolle otro inciso o si desea terminar el análisis.
+Enumera los pelicopes con un inciso alfabetico mayúsculas por ejemplo "OPCION A.", y despues pregunta que inciso vas. desarrollr.
+por ejemplo: "¿Qué opción deseas que desarrolle? " y agrega un penultimo inciso que diga "Analizar todo".
+un último inciso para analizar otro capítulo. 
 
-despues de la eleccion del inciso, desarrolla el análisis con los siguientes puntos:
+Solo despues de la eleccion de la opción, puedes continuar desarrollando el análisis con los siguientes puntos pero solo de la opción solicitada, no analices todo el capítulo a menos que te lo indiquen.
 
-1. Perícope / Versículos:
+1. Perícope / Versículos
 2. Resumen Historico: Identifica y presenta un resumen histórico, geográfico, cultural, 
 político, religioso o social relevante para entender el contexto del pasaje. (como seguramente cada capitulo 
 ocupara varias veces este modulo solo presenta informacion relevante y no repitas informacion que ya hayas 
 presentado en otro perícope, solo presenta la informacion nueva que aporte a la comprension del nuevo perícope).
-
 3. Resumen Temático:  ¿qué dice el texto?
 Resume objetivamente lo que el texto dice en su sentido llano y gramatical. 
 Presenta las ideas principales en orden lógico, sin interpretación doctrinal, aplicación pastoral ni inferencias.
 Presentalas en viñetas para separar las proposiciones.  
-
 4. Análisis Teológico:
 Identifica las doctrinas presentes en el pasaje aplicando la hermeneutica de Luis Berkof. 
 Coloca las doctrinas en viñetas en orden de importancia y relación, explicando cada una con claridad y profundidad. 
 Señala conexiones redentor-históricas, promesa-cumplimiento, tipología, 
 pacto y relación con Cristo cuando el texto lo sustente.
-
 5. Análisis Gramatical:
 Identifica palabras clave, verbos principales, repeticiones, contrastes y frases. 
 y analiza unicamente las mas relevantes, no analices todas solo las que aporten valor teologico. 
 Incluye idioma original transliterado sus significados y sus usos y costumbres segun la epoca. 
-
 6. Análisis Literario y Retórico:
 Segun EW Bullinger, identifica las figuras de diccion señala las imposibilidades logicas y explica como 
 las figuras muestran el significado real del texto sin convertir cada detalle en simbolismo artificial.
-
 7. Aplicación Pastoral: texto en forma de speach, copiando el estilo de DL Moody o Leonard Revenhill, 
 con lenguaje claro y natural, usando ilustraciones simples, metáforas bíblicas o ejemplos de la vida diaria. 
 Evita tecnicismos pero aplicando la verdad del texto a la vida del creyente y de la iglesia. 
@@ -444,14 +438,14 @@ Incluye confrontación del pecado, consuelo evangélico, exhortación concreta y
 Evita moralismo, sentimentalismo y aplicaciones desconectadas del texto.
 
 Formato de salida:
-Desarrolla cada perícope en texto normal, no en tabla, usando encabezados claros para cada apartado. 
+Desarrolla cada perícope en texto normal, no en tabla, usando encabezados claros para cada apartado. títulos y subtitulos en negritas y citas biblicas en cursiva. 
 
 Usa este formato y separacion:
 
 ANÁLISIS EXEGÉTICO Y TEOLÓGICO 
 (libro y capítulo que solicitó el usuario)
 
-(numero progresivo a partir de 1.- ): Pericope [TITULO] - [RANGO DE VERSICULOS]
+Pericope [TITULO] - [RANGO DE VERSICULOS]
   A. Resumen Historico: 
   B. Resumen Temático:
   C. Análisis Teológico:
@@ -467,7 +461,7 @@ para imprimir SI/NO? (si te dice que si generas el PDF y si te dice que no simpl
 Capítulo a analizar: [PARAMETRO]`
             },
             'p2': {
-                titulo: "2. Diseñar Bosquejos para Enseñanza Bíblica",
+                titulo: "2. Diseñar Bosquejos para predicar",
                 descripcion: "Crea un bosquejo bíblico para un sermón, Selecciona Bosquejo hermenéutico para incluir un analisis hermenéutico.",
                 pregunta: "¿Podrías introducir un tema o cita bíblica?",
                 plantillaBosquejoSencillo: `Actúa como un predicador y expositor bíblico dentro de una línea reformada confesional, fiel al contexto histórico-gramatical del texto.  
@@ -728,7 +722,7 @@ Consideraciones: Usa un tono cálido, profundo y pastoral. Dirigido a creyentes 
 El tema o pasaje será: [PARAMETRO]`,
             },
             'p3': {
-                titulo: "3. Estudiar y Explicar Doctrina Bíblica",
+                titulo: "3. Explicar Doctrina Confesión de Londres de 1689",
                 descripcion: "Analiza temas doctrinales o la Confesión de 1689. Puedes escribir la doctrina, citar un número de párrafo, pegar el texto o adjuntar un documento a la IA para su análisis.",
                 pregunta: "¿Qué doctrina o párrafo te gustaría comprender?",
                 plantilla: `Actúa como un profesor de teología dentro de la tradición reformada confesional 
@@ -852,7 +846,7 @@ SALIDA ESPERADA
 Entrega un versiculo relacionado al speach y el speach listo para usarse en vivo, sin explicaciones.`
             },
 'p6': {
-    titulo: "6. Análisis Exegético de un Texto",
+    titulo: "6. Análisis Exegético",
     descripcion: "Realiza un análisis bíblico claro aplicando el método gramatical, histórico y teológico con apoyo del idioma original (hebreo/griego).",
     pregunta: "Introduce la cita bíblica a analizar de preferencia 1 solo versículo.",
     plantilla: `Actúa como un teólogo reformado experto en hermenéutica y exégesis, aplicando estrictamente el método gramatical, histórico y teológico (en la línea de Louis Berkhof). Tu objetivo es explicar el texto de forma clara, sencilla y estructurada, pero con alta rigurosidad académica y profundidad en los idiomas originales.
@@ -889,7 +883,7 @@ Da una aplicación clara, directa y pastoral.
 Señala claramente un error común de interpretación (falacia lógica, eiségesis o sesgo histórico) que se suele cometer con este pasaje y corrígelo con la evidencia expuesta.`
 },
 'p7': {
-    titulo: "7. Análisis Gramatical Avanzado",
+    titulo: "7. Análisis Gramatical",
     descripcion: "Realiza un análisis gramatical avanzado del texto bíblico en idioma original, considerando tiempos verbales, voz, aspecto verbal, participios, artículos, imperativos, frecuencia de uso y si una palabra es hapax legomenon.",
     pregunta: "Introduce la cita bíblica a analizar",
     plantilla: `Actúa como un especialista en exégesis bíblica, usando el método gramático-histórico-teológico. Analiza el siguiente versículo bíblico de manera rigurosa, objetiva y contextual, evitando alegorías infundadas, aplicaciones forzadas o doctrinas ajenas al texto.
