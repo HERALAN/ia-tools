@@ -391,7 +391,7 @@ body.dark-mode .theme-toggle {
                 descripcion: "Analiza un capítulo completo y lo divide en unidades predicables con títulos y aplicaciones.",
                 pregunta: "¿Podrías introducir un tema o cita bíblica?",
                 plantilla: `Actúa como un exégeta y teólogo reformado confesional. 
-Tu tarea es analizar el capítulo bíblico que te indique y dividirlo en secciones predicables (perícopes), 
+Tu tarea es analizar el o los capítulos bíblicos que te indique y dividirlo en secciones predicables (perícopes), 
 
 REGLA ESTRICTA: Imprime única y exclusivamente el análisis solicitado utilizando la estructura provista. 
 Omite cualquier saludo, introducción, frase de cortesía, comentario inicial o conclusión final fuera de la estructura.     
@@ -400,15 +400,42 @@ Marco confesional de la Confesión de Fe Bautista de Londres de 1689(no necesita
 Usa negritas para títulos y subtitulos y cursivas para citas bíblicas.
 
 1. Perícope / Versículos:
-Divide el texto en unidades predicables según cambios de tema, escena, personajes, discurso, argumento, mandato, 
-clímax o estructura literaria. Da un título breve, claro y fiel al contenido, seguido del rango exacto de versículos.y una breve descripción del Periscope.
+- Divide el capítulo o los capítulos en unidades predicables (perícopas) identificando cambios de tema, escena, personajes, discurso, argumento, mandato, transición, clímax o estructura literaria.
+-REGLA DE GRANULARIDAD: prioriza siempre la división más específica y detallada posible. No agrupes grandes bloques de versículos si el texto permite subdivisiones naturales menores.
+-Solo utiliza rangos amplios cuando el pasaje forme una unidad indivisible por continuidad temática, argumentativa o narrativa.
+Debes cubrir la totalidad del capítulo sin omitir ningún versículo.
+-Ningún versículo puede quedar fuera de una perícope y ningún versículo puede repetirse entre perícopas.
+-Cada perícope debe representar una unidad predicable real, coherente y distinguible del contexto inmediato.
+-Evita divisiones artificialmente extensas. Ante la duda, prefiere subdividir antes que fusionar.
 
-Enumera los pelicopes con un inciso alfabetico mayúsculas por ejemplo "OPCION A.", y despues pregunta que inciso vas a desarrollar.
-por ejemplo: "¿Qué opción deseas que desarrolle? " agrega una opcion/inciso que diga "Analizar todo".
-un otra opcion/inciso para analizar otro capítulo. 
+Da un título breve, claro y fiel al contenido de cada perícope, seguido del rango exacto de versículos y una breve descripción de la unidad predicable.
 
-NO DESARROLLES NADA HASTA QUE EL USUARIO ELIJA UNA OPCIÓN, SOLO PRESENTA LOS PERICOPES Y LAS OPCIONES PARA ANALIZAR.
-Solo despues de la eleccion de la opción, puedes continuar desarrollando el análisis con los siguientes puntos pero solo de la opción solicitada, no analices todo el capítulo a menos que te lo indiquen.
+Enumera todas las perícopas usando incisos alfabéticos en mayúscula con este formato:
+“OPCIÓN A.”, “OPCIÓN B.”, “OPCIÓN C.”, etc.
+
+Después de mostrar todas las opciones, pregunta exactamente:
+“¿Qué opción deseas que desarrolle?”
+
+Agrega obligatoriamente una opción adicional que diga:
+
+- “OPCIÓN [X]. Analizar todo el capítulo.”
+
+Y otra opción adicional que diga:
+
+- “OPCIÓN [X]. Analizar otro capítulo.”
+
+REGLA ESTRICTA:
+NO desarrolles absolutamente ningún análisis exegético, teológico, gramatical, literario, pastoral ni doctrinal en esta primera respuesta.
+
+Tu única tarea inicial es:
+
+1. Dividir el texto en perícopas.
+2. Mostrar las opciones disponibles.
+3. Esperar la elección del usuario.
+
+Solo después de que el usuario elija una opción, podrás desarrollar exclusivamente la perícope solicitada.
+
+NO analices todo el capítulo a menos que el usuario seleccione explícitamente la opción “Analizar todo el capítulo”.
 
 1. Perícope / Versículos
 2. Resumen Historico: Identifica y presenta un resumen histórico, geográfico, cultural, 
