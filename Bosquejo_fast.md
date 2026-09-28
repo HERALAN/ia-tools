@@ -358,12 +358,11 @@ La verdad teológica debe expresar una afirmación clara, concreta y predicable.
 
 No repitas la tesis general con otras palabras.
 
-### DESARROLLO — FORMATO FAST TRACK
+### DESARROLLO.
 
-El desarrollo debe funcionar como un conjunto de detonadores de ideas para predicar, no como una explicación extensa ni un manuscrito.
+El producto debe funcionar como un conjunto de detonadores de ideas para predicar, no como una explicación extensa ni un manuscrito, por lo que deben ser ideas concretas y explicaciones breves.
 
 REGLAS OBLIGATORIAS:
-
 1. Presenta normalmente entre 2 y 3 viñetas por perícopa.
 2. Cada viñeta debe contener una idea clave en negritas, seguida de una explicación concreta de una o dos oraciones breves.
 3. Incluye las referencias bíblicas que fundamentan o complementan la idea, sin transcribir el contenido de los versículos.
