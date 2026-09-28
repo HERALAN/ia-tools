@@ -235,16 +235,15 @@
         }
 
         .ia-links {
-            display: none;
+            display: flex;
             justify-content: center;
             flex-wrap: wrap;
             gap: 10px;
             margin: 18px 0 15px 0;
         }
 
-        .ia-links.visible { display: flex; }
-
-        .ia-links a {
+        .ia-links a,
+        .ia-links button {
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -256,21 +255,43 @@
             min-width: min(165px, 100%);
             border-radius: 999px;
             transition: transform 0.2s, opacity 0.2s;
+            border: 0;
+            font-family: inherit;
+            cursor: pointer;
         }
 
-        .ia-links a:hover { transform: translateY(-2px); opacity: 0.9; }
+        .ia-links a:hover,
+        .ia-links button:hover { transform: translateY(-2px); opacity: 0.9; }
         .ia-claude { background-color: #c96442; }
         .ia-chatgpt { background-color: #10a37f; }
         .ia-copilot { background-color: #0078d4; }
         .ia-deepseek { background-color: #4d6bfe; }
         .ia-gemini { background-color: #8a4af3; }
+        .ia-notebooklm { background-color: #287a69; }
+        .ia-presentaciones { background-color: #b45136; }
+
+        #notificacion-copia {
+            display: none;
+            margin: 10px auto 16px;
+            padding: 10px 16px;
+            width: fit-content;
+            max-width: 100%;
+            color: var(--accent-dark);
+            border: 1px solid rgba(39, 174, 96, 0.35);
+            border-radius: 10px;
+            background: rgba(39, 174, 96, 0.10);
+            font-weight: 800;
+        }
+
+        #notificacion-copia.visible { display: block; }
 
         @media (max-width: 560px) {
             body { padding: 12px; }
             .hero { border-radius: 22px; padding: 28px 12px; }
             h1 { font-size: clamp(4rem, 20vw, 6.3rem); }
             .prompt-btn { min-height: auto; text-align: center; }
-            .ia-links a { width: 100%; }
+            .ia-links a,
+            .ia-links button { width: 100%; }
         }
     
 /* ==== AJUSTES DE CONTRASTE VISUAL (SIN TOCAR PROMPTS) ==== */
@@ -353,7 +374,7 @@ body.dark-mode .theme-toggle {
             <button class="prompt-btn" onclick="cargarPrompt('p1')">1. Delimitar Capítulo por Temas</button>
             <button class="prompt-btn" onclick="cargarPrompt('p2')">2. Diseñar Bosquejos para predicar</button>
             <button class="prompt-btn" onclick="cargarPrompt('p3')">3. Analizar Doctrina Confesión de Londres 1689</button>
-            <button class="prompt-btn" onclick="cargarPrompt('p4')">4. Dudas sobre Fe o Práctica</button>
+            <button class="prompt-btn" onclick="cargarPrompt('p4')">4. Investigador bíblico</button>
             <button class="prompt-btn" onclick="cargarPrompt('p5')">5. Creador de Speachs Litúrgicos</button>
             <button class="prompt-btn" onclick="cargarPrompt('p6')">6. Análisis Exegético</button>
             <button class="prompt-btn" onclick="cargarPrompt('p7')">7. Análisis Gramatical</button>
@@ -378,7 +399,10 @@ body.dark-mode .theme-toggle {
             <a href="https://copilot.microsoft.com" target="_blank" onclick="reiniciarPagina()" class="ia-copilot">Copilot</a>
             <a href="https://chat.deepseek.com" target="_blank" onclick="reiniciarPagina()" class="ia-deepseek">DeepSeek</a>
             <a href="https://gemini.google.com" target="_blank" onclick="reiniciarPagina()" class="ia-gemini">Gemini</a>
+            <a href="https://notebooklm.google.com/" target="_blank" rel="noopener noreferrer" onclick="reiniciarPagina()" class="ia-notebooklm">NotebookLM</a>
+            <button type="button" onclick="copiarPromptPresentaciones()" class="ia-presentaciones">Prompt Presentaciones</button>
         </div>
+        <p id="notificacion-copia" role="status" aria-live="polite"></p>
         <button class="home-btn" type="button" onclick="reiniciarPagina()">Home</button>
         <p>Iglesia Cristiana Elim</p>
         <p>Pastor Antonio Hermenegildo Alejo</p>
@@ -485,192 +509,6 @@ Capítulo a analizar: [PARAMETRO]`
                 titulo: "2. Diseñar Bosquejos para predicar",
                 descripcion: "Crea un bosquejo bíblico para un sermón, Selecciona Bosquejo hermenéutico para incluir un analisis hermenéutico.",
                 pregunta: "¿Podrías introducir un tema o cita bíblica?",
-                plantillaBosquejoSencillo: `Actúa como **exegeta, teólogo bíblico y predicador reformado confesional**, tomando como marco doctrinal principal la **Escritura**, en armonía con la **Confesión Bautista de Fe de Londres de 1689**, la teología histórica de la Reforma y una lectura cristocéntrica de la historia de la redención.
-
-REGLA ESTRICTA: Imprime única y exclusivamente el análisis solicitado utilizando la estructura provista. 
-Omite cualquier saludo, introducción, frase de cortesía, comentario inicial o conclusión final fuera de la estructura.
-En toda argumentacion, cuida tu logica teologica, no generes conetido que contradiga ls escritura, la doctrina o la ontologia de Dios.
-
-Voy a proporcionarte un **pasaje bíblico**. Usa un lenguaje facil de entender y evita tecnicismos innecesarios.
-
-## PRINCIPIOS QUE DEBES RESPETAR
-
-1. **La Escritura gobierna el bosquejo.**
-No introduzcas una idea simplemente porque sea verdadera teológicamente. Debe surgir del texto, estar contenida en él o derivarse legítimamente de él.
-
-2. **No espiritualices ni alegorices arbitrariamente.**
-No conviertas detalles narrativos en símbolos si el propio texto o el contexto bíblico no justifican esa interpretación.
-
-3. **No inventes emociones, pensamientos, motivaciones ni diálogos.**
-Distingue claramente entre:
-- lo que el texto afirma;
-- lo que razonablemente puede inferirse;
-- y lo que sería mera imaginación homilética.
-
-4. **No reduzcas el pasaje a moralismo.**
-Evita aplicaciones del tipo:
-“sé como este personaje”, “no seas como aquel personaje”, “todos somos Pedro”, etc., sin explicar primero la realidad teológica que fundamenta esa aplicación.
-
-5. **Busca las causas teológicas detrás de los acontecimientos.**
-Cuando el texto narre un hecho, pregunta:
-- ¿qué revela acerca de Dios?
-- ¿qué revela acerca del hombre?
-- ¿qué revela acerca del pecado?
-- ¿qué revela acerca de Cristo?
-- ¿qué revela acerca de la gracia, juicio, pacto, salvación o providencia?
-
-6. **La emoción debe surgir de la verdad.**
-No exageres el drama del relato para producir sentimientos. La respuesta afectiva debe ser consecuencia de comprender correctamente la doctrina.
-
-7. **Interpreta el texto en su contexto.**
-Considera:
-- contexto inmediato;
-- contexto del libro;
-- género literario;
-- contexto histórico;
-- teología bíblica;
-- relación con el resto de la Escritura.
-
-8. **Distingue entre exégesis y sistemática.**
-Primero explica qué enseña este pasaje. Después muestra cómo esa enseñanza se conecta legítimamente con doctrinas más amplias de la Escritura.
-
-9. **Lee el texto dentro de la historia de la redención.**
-Cuando sea legítimo, muestra su relación con:
-- creación;
-- caída;
-- promesa;
-- pacto;
-- obra de Cristo;
-- redención;
-- Iglesia;
-- consumación.
-
-No fuerces una referencia directa a Cristo donde el texto no la permita, pero tampoco aísles el pasaje del propósito redentor general de la Escritura.
-
-10. **Mantén una perspectiva doctrinal reformada.**
-Cuando el texto lo permita, identifica doctrinas como:
-- doctrina de Dios;
-- providencia y decreto;
-- antropología;
-- pecado y depravación;
-- cristología;
-- expiación;
-- justificación;
-- regeneración;
-- conversión;
-- adopción;
-- santificación;
-- perseverancia;
-- Iglesia;
-- medios de gracia;
-- escatología.
-
-No introduzcas TULIP, pactos, elección, perseverancia u otras doctrinas simplemente porque pertenecen a la teología reformada. Úsalas solamente cuando el texto realmente las sostenga.
-
-# DESARROLLO DEL TEMA
-
-Construye un bosquejo con los puntos teológicos**.
-
-El bosquejo debe contener:
-
-# TÍTULO
-Debe ser corto, memorable y doctrinalmente preciso.
-
-# TEXTO BASE
-Indica claramente el pasaje principal.
-
-# TESIS
-Una sola oración fuerte que responda:
-
-**¿Qué verdad principal debe creer, comprender o abrazar la congregación después de escuchar este sermón?**
-
-La tesis no debe ser simplemente descriptiva.
-
-Debe contener una afirmación teológica.
-
-Ejemplo:
-
-Débil:
-“Pedro negó a Jesús tres veces.”
-
-Mejor:
-“La caída de Pedro demuestra que nuestra perseverancia no descansa finalmente en nuestra propia firmeza, sino en la gracia preservadora de Cristo.”
-
----
-
-# DESARROLLO
-Cada punto debe seguir esta estructura:
-
-## 1. TÍTULO DEL PUNTO
-Una frase doctrinal corta y memorable.
-
-### Texto
-Cita o indica los versículos del pasaje que fundamentan el punto.
-
-### Verdad teológica
-Explica en una oración qué doctrina enseña.
-
-### Desarrollo
-Explica brevemente:
-
-- qué está sucediendo en el texto;
-- por qué sucede;
-- qué revela acerca de Dios, el hombre, Cristo, el pecado o la salvación;
-- cómo se conecta con el resto de la Escritura.
-
-Usa referencias bíblicas cruzadas solamente cuando realmente ayuden a demostrar la doctrina.
-
-### Principio doctrinal
-Resume la enseñanza en una frase que pueda recordarse fácilmente.
-
-### Aplicación pastoral
-Después de desarrollar los puntos, realiza un speech pastoral amplio y predicable, obligatoriamente debe razonar estás secciones:
-
-
-Primero pregunta:
-
-**Si esta doctrina es verdadera, ¿qué debe cambiar en nuestra manera de pensar, confiar, adorar, arrepentirnos o vivir?**
-
-La aplicación puede dirigirse a:
-- creyentes;
-- incrédulos;
-- Iglesia;
-- familia;
-- ministros;
-- conciencia personal.
-
-Evita aplicaciones genéricas.
-
-# FRASE FINAL DE IMPACTO
-Termina con Una frase final de impacto.
-
----
-
-# CONTROL DE CALIDAD
-
-Antes de entregar el bosquejo revisa silenciosamente:
-
-- ¿Cada punto surge realmente del texto?
-- ¿Estoy predicando doctrina o solamente describiendo acontecimientos?
-- ¿Inventé algún sentimiento o motivación?
-- ¿Confundí aplicación con interpretación?
-- ¿Estoy usando otros textos para iluminar este pasaje o para sustituirlo?
-- ¿La doctrina explica el acontecimiento?
-- ¿La aplicación surge de la doctrina?
-- ¿Cristo aparece legítimamente y no artificialmente?
-- ¿El sermón podría predicarse sin este pasaje? Si la respuesta es sí, vuelve a trabajar el bosquejo porque probablemente el texto solo está sirviendo de pretexto.
-
-Usa lenguaje **Lenguaje claro sencillo, pastoral, doctrinalmente profundo pero entendible**.
-No hagas el contenido excesivamente largo.
-Quiero un bosquejo que funcione como **detonador de ideas para predicar**, no como un manuscrito completo.
-
----
-Despues de imprimir en pantalla el resultado pregunta: ¿Deseas que te genere un documento PDF con el Bosquejo completo listo 
-para imprimir SI/NO? (si te dice que si generas el PDF con las consideraciones para la generacion del documento PDF y 
-si te dice que no simplemente termina el prompt) 
-
-**PASAJE A ANALIZAR:**  
-[PARAMETRO]`,
                 plantillaBosquejoLogico: `Actúa como un predicador con el estilo de DL Moody, pero alineado a la doctrina la 2a Confesión Londres de 1689.       
 
 REGLA ESTRICTA: Imprime única y exclusivamente el análisis solicitado utilizando la estructura provista. 
@@ -958,65 +796,9 @@ para imprimir SI/NO? (si te dice que si generas el PDF con las consideraciones p
 si te dice que no simplemente termina el prompt)`
             },
             'p4': {
-                titulo: "4. Dudas sobre Fe o Práctica",
-                descripcion: "Esclarece una duda, considerando la regla de Lerins, Patrística, Cuadrilatero de Wesley.",
-                pregunta: "Escribe aquí tu duda.",
-                plantilla: `Actúa como un teólogo sistemático experto, con profundo conocimiento de la Confesión de Fe Bautista de Londres de 1689,
-                del Cuadrilátero de John Wesley (Escritura, Tradición, Razón y Experiencia) y de la teología patrística. 
-                Tu objetivo es esclarecer dudas sobre cuestiones de fe o práctica cristiana con el mayor rigor académico posible.
-
-REGLA ESTRICTA:
-Imprime única y exclusivamente el análisis solicitado usando la estructura provista. Omite cualquier saludo, introducción, comentario de cortesía o conclusión fuera de la estructura.
-En toda argumentacion, cuida tu logica teologica, no generes conetido que contradiga ls escritura, la doctrina o la ontologia de Dios.
-
-Para cada pregunta, responde exactamente con esta estructura:
-
-Mi duda es: [PARAMETRO]
-
-1. Veredicto Inicial:
-Elige UNA de estas tres categorías:
-• Es bíblico y puede practicarse y/o creerse.
-• No es bíblico, pero puede ser practicado o creido (libertad cristiana).
-• No es bíblico y no debe practicarse  ni creerse.
-
-1.1. Conclusión pastoral/técnica:
-Resume en un parrafo breve si la práctica debe afirmarse, tolerarse o rechazarse.
-
-2. Análisis teológico y patrístico:
-Evalúa el tema con los siguientes criterios, en este orden:
-a) Escritura, 
-b) Razón teológica.
-c) Tradición apostólica, patrística y regla de Lérins evalúa si la doctrina o práctica ha sido creída “siempre, en todas partes y por todos”.
-d) Experiencia: la experiencia no decide sola lo verdadero, sino que ayuda a probar si una doctrina bíblica realmente transforma la vida. 
-   la experiencia está subordinada a la Escritura y acompañada por la tradición y la razón..
-
-3. Consenso de los Padres de la Iglesia: Resume el consenso patrístico relevante sobre el tema.
-- Cita explícitamente a los Padres más relevantes.
-- Incluye referencia bibliográfica de cada obra citada.
-- Distingue entre consenso amplio, opinión mayoritaria y opiniones minoritarias.
-
-4. Postura de la Confesión de 1689: Menciona el capítulo y párrafo exacto, y explica brevemente la relación con la cuestión.
-
-5. Historia conciliar y recepción doctrinal: investiga si el asunto fue tratado, definido, condenado, debatido o preparado en algún concilio ecuménico, regional o sínodo relevante.
-- Indica el concilio, fecha, canon, definición o condena pertinente.
-- Explica si la doctrina surgió, se aclaró, se corrigió o se formalizó allí.
-- Si no existe antecedente conciliar relevante, decláralo explícitamente.
-
-Notas:
-- Todo dato, cita, referencia patrística, conciliar o bibliográfica debe ser verificable y exacto.
-- No inventes citas, capítulos, párrafos, fechas ni títulos de obras.
-- Si no estás seguro de una referencia, dilo con claridad.
-- Prefiere solo fuentes bien identificables y comprobables.
-- Puedes consultar el dezinger para entender la doctrina romana y poder juzgar con sana doctrina. 
-
-(consideraciones para la generacion del documento PDF:El diseño del documento pdf debe ser limpio, 
-visualmente atractivo y bien estructurado, con títulos claros, subtítulos, imágenes de apoyo, 
-columnas equilibradas, buen uso de espacios en blanco y una jerarquía visual que 
-guíe la lectura sin saturar al lector.)
-
-Despues de imprimir en pantalla el resultado pregunta: ¿Deseas que te genere un documento PDF con el resultado completo listo 
-para imprimir SI/NO? (si te dice que si generas el PDF con las consideraciones para la generacion del documento PDF y 
-si te dice que no simplemente termina el prompt)`
+                titulo: "4. Investigador bíblico",
+                descripcion: "Investiga consultas bíblicas, históricas y teológicas desde una perspectiva reformada confesional.",
+                pregunta: "¿Qué deseas investigar?"
             },
             'p5': {
                 titulo: "5. Creador de Speachs Litúrgicos",
@@ -1355,7 +1137,6 @@ guíe la lectura sin saturar al lector.)`
             document.getElementById('campos-parametros').innerHTML = '';
             document.getElementById('opciones-adicionales').innerHTML = '';
             document.getElementById('mensaje-exito').style.display = 'none';
-            document.getElementById('ia-links').classList.remove('visible');
             promptActual = '';
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -1471,7 +1252,6 @@ guíe la lectura sin saturar al lector.)`
                             }
                 }
                 document.getElementById('mensaje-exito').style.display = 'none';
-                document.getElementById('ia-links').classList.remove('visible');
 
             // Enfocar el primer campo disponible
             setTimeout(() => {
@@ -1496,9 +1276,41 @@ guíe la lectura sin saturar al lector.)`
             return sel.join(', ') || 'No especificado';
         }
 
-        function generarYCopiar() {
+        let temporizadorNotificacionPresentaciones;
+
+        async function copiarPromptPresentaciones() {
+            const notificacion = document.getElementById('notificacion-copia');
+            clearTimeout(temporizadorNotificacionPresentaciones);
+
+            try {
+                const respuesta = await fetch('./Prompt_Presentaciones.md');
+                if (!respuesta.ok) throw new Error('No se pudo cargar el prompt');
+                const texto = await respuesta.text();
+                const areaTemporal = document.createElement('textarea');
+                areaTemporal.value = texto;
+                areaTemporal.setAttribute('readonly', '');
+                areaTemporal.style.position = 'fixed';
+                areaTemporal.style.opacity = '0';
+                document.body.appendChild(areaTemporal);
+                areaTemporal.select();
+                const copiado = document.execCommand('copy');
+                areaTemporal.remove();
+                if (!copiado) throw new Error('No se pudo copiar el prompt');
+
+                notificacion.textContent = 'Prompt copiado correctamente. Pégalo en NotebookLM para generar tus diapositivas.';
+            } catch (error) {
+                notificacion.textContent = 'No se pudo copiar el prompt de presentaciones.';
+            }
+
+            notificacion.classList.add('visible');
+            temporizadorNotificacionPresentaciones = setTimeout(() => {
+                notificacion.classList.remove('visible');
+            }, 4000);
+        }
+
+        async function generarYCopiar() {
             const datos = baseDatosPrompts[promptActual];
-            let textoFinal = datos.plantilla;
+            let textoFinal = datos.plantilla || '';
 
             if (promptActual === 'p5') {
                 textoFinal = textoFinal.replace('[SITUACION]', obtenerRadio('sit', 'otro-sit-txt'))
@@ -1507,11 +1319,36 @@ guíe la lectura sin saturar al lector.)`
                                        .replace('[TONO]', obtenerRadio('tono', 'otro-tono-txt'))
                                        .replace('[ADICIONAL]', document.getElementById('inst-adic').value || 'Ninguna');
             } else {
-                if (promptActual === 'p2') {
+                if (promptActual === 'p4') {
+                    try {
+                        const respuesta = await fetch('./promt_INVESTIGADOR_biblico.md');
+                        if (!respuesta.ok) throw new Error('No se pudo cargar el archivo');
+                        textoFinal = await respuesta.text();
+                        const consulta = document.getElementById('input-parametro').value.trim() || 'No especificada';
+                        textoFinal += `\n\nCONSULTA DEL USUARIO\n\n${consulta}\n`;
+                    } catch (error) {
+                        const msj = document.getElementById('mensaje-exito');
+                        msj.textContent = 'No se pudo leer promt_INVESTIGADOR_biblico.md. Abre la página desde un servidor local o web.';
+                        msj.style.display = 'block';
+                        return;
+                    }
+                } else if (promptActual === 'p2') {
                     const tipo = document.querySelector('input[name="tipoBosquejo"]:checked').value;
                     const ver = document.querySelector('input[name="version"]:checked').value;
                     if (tipo === 'Bosquejo sencillo') {
-                        textoFinal = datos.plantillaBosquejoSencillo;
+                        try {
+                            const respuesta = await fetch('./Bosquejo_fast.md');
+                            if (!respuesta.ok) throw new Error('No se pudo cargar el archivo');
+                            textoFinal = await respuesta.text();
+                        } catch (error) {
+                            const msj = document.getElementById('mensaje-exito');
+                            msj.textContent = 'No se pudo leer Bosquejo_fast.md. Abre la página desde un servidor local o web.';
+                            msj.style.display = 'block';
+                            return;
+                        }
+                        textoFinal = textoFinal
+                            .replace('**[INSERTAR AQUÍ EL PASAJE]**', document.getElementById('input-parametro').value || 'No especificado')
+                            .replace('**[INSERTAR AQUÍ LAS PREGUNTAS DEL USUARIO]**', 'No se proporcionaron preguntas adicionales.');
                     } else if (tipo === 'Bosquejo Logico') {
                         textoFinal = datos.plantillaBosquejoLogico;
                     } else {
@@ -1538,8 +1375,8 @@ guíe la lectura sin saturar al lector.)`
             document.body.removeChild(tempTextArea);
 
             const msj = document.getElementById('mensaje-exito');
+            msj.textContent = '¡Prompt copiado al portapapeles exitosamente!';
             msj.style.display = 'block';
-            document.getElementById('ia-links').classList.add('visible');
             document.getElementById('ia-links').scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
     </script>
