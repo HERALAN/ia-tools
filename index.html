@@ -1277,6 +1277,16 @@ guíe la lectura sin saturar al lector.)`
         }
 
         let temporizadorNotificacionPresentaciones;
+        let instruccionesTesisCompartidas;
+
+        async function obtenerInstruccionesTesis() {
+            if (instruccionesTesisCompartidas) return instruccionesTesisCompartidas;
+
+            const respuesta = await fetch('./tesis_builder.md');
+            if (!respuesta.ok) throw new Error('No se pudo cargar tesis_builder.md');
+            instruccionesTesisCompartidas = await respuesta.text();
+            return instruccionesTesisCompartidas;
+        }
 
         async function copiarPromptPresentaciones() {
             const notificacion = document.getElementById('notificacion-copia');
@@ -1364,6 +1374,21 @@ guíe la lectura sin saturar al lector.)`
                         const enfoque = document.getElementById('input-enfoque').value || 'No especificado';
                         textoFinal = textoFinal.replace('[ENFOQUE]', enfoque);
                     }
+                }
+            }
+
+            if (promptActual === 'p2' || promptActual === 'p4') {
+                try {
+                    const constructorTesis = await obtenerInstruccionesTesis();
+                    const alcanceTesis = promptActual === 'p2'
+                        ? 'Aplica estas reglas solo a la tesis del bosquejo. Conserva el formato completo del bosquejo solicitado; no respondas únicamente con la tesis.'
+                        : 'Aplica estas reglas solo si la consulta solicita o requiere una tesis explícita. En una investigación bíblica, histórica o doctrinal, conserva su formato y no la conviertas en un sermón.';
+                    textoFinal += `\n\n# CONSTRUCTOR COMPARTIDO DE TESIS\n${constructorTesis}\n\n## ALCANCE EN ESTE MÓDULO\n${alcanceTesis}\n`;
+                } catch (error) {
+                    const msj = document.getElementById('mensaje-exito');
+                    msj.textContent = 'No se pudo leer tesis_builder.md. No se generó el prompt.';
+                    msj.style.display = 'block';
+                    return;
                 }
             }
 

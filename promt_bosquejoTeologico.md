@@ -152,6 +152,8 @@ Debe ser corto, memorable y doctrinalmente preciso.
 Indica claramente el pasaje principal.
 
 # TESIS
+Antes de formularla, aplica las reglas de `tesis_builder.md` exclusivamente a la tesis y conserva la estructura completa de este bosquejo. Si utilizas este prompt fuera de la aplicación, incluye también el contenido de ese archivo.
+
 Una sola oración fuerte que responda:
 
 **¿Qué verdad principal debe creer, comprender o abrazar la congregación después de escuchar este sermón?**

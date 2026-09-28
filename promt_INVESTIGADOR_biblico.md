@@ -144,6 +144,7 @@ Un título breve, preciso y específico.
 
 1. RESPUESTA CENTRAL
 Responde directamente la pregunta en un párrafo breve. Presenta la definición, tesis o explicación principal.
+Si formulas una tesis explícita, aplica las reglas de `tesis_builder.md` solo a esa tesis y conserva el formato de investigación. Al usar este archivo fuera de la aplicación, incluye también el contenido de `tesis_builder.md`.
 
 2. FUNDAMENTO Y ANÁLISIS
 Desarrolla hasta tres argumentos principales, ordenados según su importancia.
