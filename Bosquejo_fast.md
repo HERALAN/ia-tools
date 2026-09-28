@@ -358,36 +358,47 @@ La verdad teológica debe expresar una afirmación clara, concreta y predicable.
 
 No repitas la tesis general con otras palabras.
 
-### DESARROLLO
+### DESARROLLO — FORMATO FAST TRACK
 
-Utiliza viñetas con ideas completas y suficientemente desarrolladas.
+El desarrollo debe funcionar como un conjunto de detonadores de ideas para predicar, no como una explicación extensa ni un manuscrito.
 
-Normalmente presenta dos o tres viñetas por perícopa.
+REGLAS OBLIGATORIAS:
 
-Cada viñeta debe:
+1. Presenta normalmente entre 2 y 3 viñetas por perícopa.
+2. Cada viñeta debe contener una idea clave en negritas, seguida de una explicación concreta de una o dos oraciones breves.
+3. Incluye las referencias bíblicas que fundamentan o complementan la idea, sin transcribir el contenido de los versículos.
+4. No repitas la narración que el predicador puede leer directamente en el texto bíblico.
+5. No reproduzcas los versículos, salvo que una palabra o expresión concreta sea indispensable para resolver una dificultad exegética.
+6. No introduzcas explicaciones históricas, lingüísticas o doctrinales que no contribuyan directamente a comprender el pasaje.
+7. Integra las objeciones importantes dentro de la viñeta correspondiente, respondiéndolas con la máxima brevedad.
+8. No desarrolles las aplicaciones pastorales dentro de las perícopas.
+9. No repitas lo que ya expresa la verdad teológica.
+10. Prioriza las relaciones causales, las distinciones doctrinales y los detalles que podrían pasar inadvertidos.
 
-- Explicar una idea relevante del texto.
-- Mostrar su significado teológico.
-- Identificar las relaciones causales cuando corresponda.
-- Responder las objeciones importantes.
-- Incorporar referencias bíblicas cuando ayuden a comprender el argumento.
-- Explicar las relaciones pactales y cristológicas legítimas.
+FORMATO DE CADA VIÑETA:
 
-Resalta en negritas las palabras, frases y contrastes importantes.
+- **Idea clave:** explicación concreta. Referencias bíblicas.
 
-No utilices palabras aisladas ni listas telegráficas.
+EXTENSIÓN:
 
-Evita los párrafos extensos.
+Cada viñeta debe ocupar preferentemente entre 20 y 35 palabras, incluidas las referencias.
 
-Cada viñeta debe expresar una idea suficientemente desarrollada para que el predicador pueda comprenderla y utilizarla como detonador de ideas.
+Puedes superar ese límite únicamente cuando sea indispensable para resolver una dificultad teológica o exegética importante.
 
-No repitas la verdad teológica inicial.
+No utilices párrafos extensos, explicaciones acumulativas ni subdivisiones innecesarias.
 
-Profundiza en ella mediante la explicación del texto.
+Las referencias bíblicas deben funcionar como apoyo para el estudio, no como contenido que deba reproducirse íntegramente.
 
-No incluyas una sección de aplicación pastoral dentro de las perícopas.
+CRITERIO FAST TRACK:
 
-Las implicaciones prácticas que aparezcan naturalmente durante la explicación pueden mencionarse cuando sean indispensables, pero reserva su desarrollo para la aplicación general.
+Entrega lo que el predicador necesita recordar para desarrollar la idea, no todo lo que podría decir acerca de ella.
+
+Una viñeta debe permitir identificar inmediatamente:
+- La idea principal.
+- Su significado teológico.
+- Su fundamento bíblico.
+
+Si una explicación puede reducirse sin perder su enseñanza esencial, redúcela.
 
 ## APLICACIÓN PASTORAL GENERAL
 
