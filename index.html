@@ -398,9 +398,9 @@ body.dark-mode .theme-toggle {
         <div class="btn-container">
             <button class="prompt-btn" onclick="cargarPrompt('p1')">1. Delimitar Capítulo por Temas</button>
             <button class="prompt-btn" onclick="cargarPrompt('p2')">2. Diseñar Bosquejos para predicar</button>
-            <button class="prompt-btn" onclick="cargarPrompt('p3')">3. Analizar Doctrina Confesión de Londres 1689</button>
+            <button class="prompt-btn" onclick="cargarPrompt('p3')">3. Analizar 2CBL1689</button>
             <button class="prompt-btn" onclick="cargarPrompt('p4')">4. Investigador bíblico</button>
-            <button class="prompt-btn" onclick="cargarPrompt('p5')">5. Creador de Speachs Litúrgicos</button>
+            <button class="prompt-btn" onclick="cargarPrompt('p5')">5. Creador de Speachs</button>
             <button class="prompt-btn" onclick="cargarPrompt('p6')">6. Análisis Exegético</button>
             <button class="prompt-btn" onclick="cargarPrompt('p7')">7. Análisis Gramatical</button>
             <button class="prompt-btn" onclick="cargarPrompt('p8')">8. Análisis Literario y Retórico</button>
@@ -778,7 +778,7 @@ para imprimir SI/NO? (si te dice que si generas el PDF con las consideraciones p
 si te dice que no simplemente termina el prompt)`,
             },
             'p3': {
-                titulo: "3. Explicar Doctrina Confesión de Londres de 1689",
+                titulo: "3. Analizar 2CBL1689",
                 descripcion: "Analiza temas doctrinales o la Confesión de 1689. Puedes escribir la doctrina, citar un número de párrafo, pegar el texto o adjuntar un documento a la IA para su análisis.",
                 pregunta: "¿Qué doctrina o párrafo te gustaría comprender?",
                 plantilla: `Actúa como un profesor de teología dentro de la tradición reformada confesional 
@@ -826,7 +826,7 @@ si te dice que no simplemente termina el prompt)`
                 pregunta: "¿Qué deseas investigar?"
             },
             'p5': {
-                titulo: "5. Creador de Speachs Litúrgicos",
+                titulo: "5. Creador de Speachs",
                 plantilla: `PROMPT GENERADOR DE SPEACHES LITÚRGICOS (MAESTRO DE CEREMONIAS)
 PROMPT: Actúa como un maestro de ceremonias o director de programa litúrgico en una iglesia cristiana, con un enfoque reverente, cristocéntrico y doctrinalmente sólido (alineado a la tradición reformada confesional).
 
@@ -1346,7 +1346,7 @@ guíe la lectura sin saturar al lector.)`
             notificacion.classList.add('visible');
             temporizadorNotificacionPresentaciones = setTimeout(() => {
                 notificacion.classList.remove('visible');
-            }, 4000);
+            }, 10000);
         }
 
         async function generarYCopiar() {
