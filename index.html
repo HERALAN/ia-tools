@@ -1313,7 +1313,7 @@ guíe la lectura sin saturar al lector.)`
         async function obtenerInstruccionesTesis() {
             if (instruccionesTesisCompartidas) return instruccionesTesisCompartidas;
 
-            const respuesta = await fetch('./tesis_builder.md');
+            const respuesta = await fetch('./promts/tesis_builder.md');
             if (!respuesta.ok) throw new Error('No se pudo cargar tesis_builder.md');
             instruccionesTesisCompartidas = await respuesta.text();
             return instruccionesTesisCompartidas;
@@ -1324,7 +1324,7 @@ guíe la lectura sin saturar al lector.)`
             clearTimeout(temporizadorNotificacionPresentaciones);
 
             try {
-                const respuesta = await fetch('./Prompt_Presentaciones.md');
+                const respuesta = await fetch('./promts/Prompt_Presentaciones.md');
                 if (!respuesta.ok) throw new Error('No se pudo cargar el prompt');
                 const texto = await respuesta.text();
                 const areaTemporal = document.createElement('textarea');
@@ -1362,14 +1362,14 @@ guíe la lectura sin saturar al lector.)`
             } else {
                 if (promptActual === 'p4') {
                     try {
-                        const respuesta = await fetch('./promt_INVESTIGADOR_biblico.md');
+                        const respuesta = await fetch('./promts/promt_INVESTIGADOR_biblico.md');
                         if (!respuesta.ok) throw new Error('No se pudo cargar el archivo');
                         textoFinal = await respuesta.text();
                         const consulta = document.getElementById('input-parametro').value.trim() || 'No especificada';
                         textoFinal += `\n\nCONSULTA DEL USUARIO\n\n${consulta}\n`;
                     } catch (error) {
                         const msj = document.getElementById('mensaje-exito');
-                        msj.textContent = 'No se pudo leer promt_INVESTIGADOR_biblico.md. Abre la página desde un servidor local o web.';
+                        msj.textContent = 'No se pudo leer promts/promt_INVESTIGADOR_biblico.md. Abre la página desde un servidor local o web.';
                         msj.style.display = 'block';
                         return;
                     }
@@ -1378,12 +1378,12 @@ guíe la lectura sin saturar al lector.)`
                     const ver = document.querySelector('input[name="version"]:checked').value;
                     if (tipo === 'Bosquejo sencillo') {
                         try {
-                            const respuesta = await fetch('./Bosquejo_fast.md');
+                            const respuesta = await fetch('./promts/Bosquejo_fast.md');
                             if (!respuesta.ok) throw new Error('No se pudo cargar el archivo');
                             textoFinal = await respuesta.text();
                         } catch (error) {
                             const msj = document.getElementById('mensaje-exito');
-                            msj.textContent = 'No se pudo leer Bosquejo_fast.md. Abre la página desde un servidor local o web.';
+                            msj.textContent = 'No se pudo leer promts/Bosquejo_fast.md. Abre la página desde un servidor local o web.';
                             msj.style.display = 'block';
                             return;
                         }
@@ -1417,7 +1417,7 @@ guíe la lectura sin saturar al lector.)`
                     textoFinal += `\n\n# CONSTRUCTOR COMPARTIDO DE TESIS\n${constructorTesis}\n\n## ALCANCE EN ESTE MÓDULO\n${alcanceTesis}\n`;
                 } catch (error) {
                     const msj = document.getElementById('mensaje-exito');
-                    msj.textContent = 'No se pudo leer tesis_builder.md. No se generó el prompt.';
+                    msj.textContent = 'No se pudo leer promts/tesis_builder.md. No se generó el prompt.';
                     msj.style.display = 'block';
                     return;
                 }
